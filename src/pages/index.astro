@@ -4,7 +4,11 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
   <main class="hero">
-
+  <div class="hero-title">
+  <p class="eyebrow">YAMATE FESTIVAL 2026</p>
+  <h1>STELLA</h1>
+  <p class="subtitle">～60光年の閃光～</p>
+  </div> 
     <!-- 山手学院の校舎 -->
     <img
       class="campus"
@@ -38,8 +42,43 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: #02040d;
+    background:#02040d;
   }
+  .hero-title {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  color: white;
+  pointer-events: none;
+}
+
+.hero-title .eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  opacity: 0.8;
+}
+
+.hero-title h1 {
+  margin: 0;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.hero-title .subtitle {
+  margin: 16px 0 0;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  letter-spacing: 0.18em;
+}
 .stars-3 {
   position: absolute;
   inset: 0;
