@@ -3,7 +3,12 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="hero">
+  <main class="hero" id="top">
+  <!-- オープニング -->
+  <div class="opening">
+  <div class="opening-stars"></div>
+  <div class="first-star"></div>
+  </div>
   <div class="hero-title">
   <p class="eyebrow">YAMATE FESTIVAL 2026</p>
   <h1>STELLA</h1>
@@ -31,12 +36,130 @@ import Layout from '../layouts/Layout.astro';
   <span class="rush-star"></span>
   <span class="rush-star"></span>
   <span class="rush-star"></span>
-</div>
-<canvas id="starfield"></canvas>
+  </div>
+  <canvas id="starfield"></canvas>
+  <nav class="top-nav">
+  <a href="#information">INFORMATION</a>
+  <span class="nav-logo">STELLA</span>
+  <a href="#top">TOP</a>
+</nav>
   </main>
+
+<section class="info-section" id="information">
+  <p class="section-label">INFORMATION</p>
+  <h2>開催情報</h2>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <span>DATE</span>
+      <h3>開催日時</h3>
+      <p>
+     2026.10.03 SAT　9:00 — 15:35<br />
+     2026.10.04 SUN　9:00 — 15:15
+     </p>
+    </div>
+
+    <div class="info-item payment-important">
+      <span>PAYMENT</span>
+      <h3>決済方法</h3>
+      <p>
+  生徒展示：交通系ICのみ<br />
+  保護者展示：現金のみ
+</p>
+
+<p class="payment-note">
+  ※交通系ICは事前に残高をご確認のうえ、十分にチャージしてご来場ください。
+</p>
+    </div>
+
+    <div class="info-item">
+      <span>SHOES</span>
+      <h3>土足での入場</h3>
+      <p>土足のままご入場いただけます</p>
+    </div>
+
+    <div class="info-item">
+      <span>RESERVATION</span>
+      <h3>事前予約</h3>
+      <p>ご来場に事前予約は必要ありません</p>
+    </div>
+  </div>
+</section>
+
 </Layout>
 
 <style>
+  .opening {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+    animation: opening-fade 2s ease 3.6s forwards;
+  }
+  @keyframes opening-fade {
+  from {
+    background: #000;
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
+  .opening-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image:
+    radial-gradient(circle at 15% 25%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 70%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 48% 18%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 67% 63%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 82% 30%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 91% 78%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 22% 88%, white 0 1px, transparent 1.5px);
+  animation: stars-awaken 2s ease-out 1.8s forwards;
+}
+
+@keyframes stars-awaken {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+.first-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: white;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 8px white,
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(180, 210, 255, 0.6);
+    animation: star-awaken 2.4s ease-out forwards;
+}
+@keyframes star-awaken {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  40% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
   .hero {
     position: relative;
     width: 100%;
@@ -72,12 +195,32 @@ import Layout from '../layouts/Layout.astro';
   line-height: 0.9;
   letter-spacing: 0.08em;
   font-weight: 700;
+  opacity: 0;
+  transform: scale(0.92);
+  filter: blur(10px);
+  transition:
+  opacity 1.6s ease,
+  transform 1.6s ease,
+  filter 1.6s ease;
 }
-
+  .hero-title h1.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
 .hero-title .subtitle {
   margin: 16px 0 0;
   font-size: clamp(1rem, 2vw, 1.4rem);
   letter-spacing: 0.18em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+  opacity 1.2s ease,
+  transform 1.2s ease;
+}
+.hero-title .subtitle.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .stars-3 {
   position: absolute;
@@ -202,8 +345,12 @@ import Layout from '../layouts/Layout.astro';
       contrast(1.1);
 
     transform: scale(1.03);
-	animation: approachCampus 8s ease-in-out infinite alternate;
+  opacity: 0;
+  transition: opacity 2.2s ease;
   }
+  .campus.is-visible {
+  opacity: 1;
+}
   @keyframes approachCampus {
   from {
     transform: scale(1.03);
@@ -360,8 +507,137 @@ import Layout from '../layouts/Layout.astro';
   z-index: 5;
   pointer-events: none;
 }
+.info-section {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 80px 24px;
+  background: #050812;
+  color: white;
+  overflow: hidden;
+}
+
+.info-section .section-label {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+}
+
+.info-section h2 {
+  margin: 0 0 40px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.info-item {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.info-item span {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  opacity: 0.55;
+}
+
+.info-item h3 {
+  margin: 10px 0 8px;
+  font-size: 1.2rem;
+}
+
+.info-item p {
+  margin: 0;
+  line-height: 1.8;
+  opacity: 0.82;
+}
+
+@media (max-width: 700px) {
+  .info-section {
+    padding: 56px 18px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.payment-important {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.payment-note {
+  margin-top: 14px !important;
+  font-weight: 700;
+  opacity: 1 !important;
+}
+.top-nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+
+  background: rgba(5, 8, 18, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.top-nav a,
+.top-nav .nav-logo {
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+.top-nav a {
+  opacity: 0.7;
+}
+
+.top-nav a:hover {
+  opacity: 1;
+}
+
+.nav-logo {
+  font-weight: 700;
+}
 </style>
 <script>
+    const campus = document.querySelector('.campus');
+
+  setTimeout(() => {
+    campus?.classList.add('is-visible');
+  }, 2000);
+
+const stellaTitle = document.querySelector('.hero-title h1');
+const subtitle = document.querySelector('.hero-title .subtitle');
+
+setTimeout(() => {
+  stellaTitle?.classList.add('is-visible');
+}, 4200);
+
+setTimeout(() => {
+  subtitle?.classList.add('is-visible');
+}, 5200);
+
   const canvas = document.getElementById('starfield');
 
   if (canvas instanceof HTMLCanvasElement) {
