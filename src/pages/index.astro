@@ -11,6 +11,7 @@ import Layout from '../layouts/Layout.astro';
   </div>
   <div class="hero-title">
   <p class="eyebrow">YAMATE FESTIVAL 2026</p>
+  <canvas id="stella-particles" aria-hidden="true"></canvas>
   <h1>STELLA</h1>
   <p class="subtitle">～60光年の閃光～</p>
   </div> 
@@ -39,9 +40,36 @@ import Layout from '../layouts/Layout.astro';
   </div>
   <canvas id="starfield"></canvas>
   <nav class="top-nav">
-  <a href="#information">INFORMATION</a>
-  <span class="nav-logo">STELLA</span>
-  <a href="#top">TOP</a>
+  <div class="desktop-nav">
+    <a href="#top">HOME</a>
+    <a href="/stella">STELLA</a>
+    <a href="/programs">PROGRAMS</a>
+    <a href="/map">MAP</a>
+    <a href="/timetable">TIMETABLE</a>
+    <a href="/information">INFORMATION</a>
+    <a href="/attention">ATTENTION</a>
+    <a href="#coming-soon">NEWS</a>
+  </div>
+
+  <div class="mobile-nav">
+    <a href="#top" class="mobile-logo">YAMATE FESTIVAL</a>
+
+    <button class="menu-button" type="button" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu">
+    <a href="#top">HOME</a>
+    <a href="/stella">STELLA</a>
+    <a href="/programs">PROGRAMS</a>
+    <a href="/map">MAP</a>
+    <a href="/timetable">TIMETABLE</a>
+    <a href="/information">INFORMATION</a>
+    <a href="/attention">ATTENTION</a>
+    <a href="#coming-soon">NEWS</a>
+  </div>
 </nav>
   </main>
 
@@ -59,18 +87,21 @@ import Layout from '../layouts/Layout.astro';
      </p>
     </div>
 
-    <div class="info-item payment-important">
-      <span>PAYMENT</span>
-      <h3>決済方法</h3>
-      <p>
-  生徒展示：交通系ICのみ<br />
-  保護者展示：現金のみ
-</p>
+   <div class="info-item payment-important">
+  <span>PAYMENT</span>
+  <h3>決済方法</h3>
 
-<p class="payment-note">
-  ※交通系ICは事前に残高をご確認のうえ、十分にチャージしてご来場ください。
-</p>
-    </div>
+  <p>
+    生徒による飲食企画：交通系ICカードのみ<br />
+    その他の飲食展示：現金
+  </p>
+
+  <p class="payment-note">
+    ※Suica・PASMO等の交通系ICカードをご利用いただけます。<br />
+    ※学内に交通系ICカードのチャージ機器はございません。<br />
+    ご来場前に残高をご確認のうえ、十分にチャージしてお越しください。
+  </p>
+</div>
 
     <div class="info-item">
       <span>SHOES</span>
@@ -85,7 +116,77 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 </section>
+<section class="coming-soon-section" id="coming-soon">
+  <div class="coming-soon-heading">
+    <p class="section-label">NEXT UPDATE</p>
+    <h2>COMING SOON</h2>
+    <p class="coming-soon-lead">
+      山手祭をもっと楽しむための情報を、順次公開していきます。
+    </p>
+  </div>
 
+  <div class="coming-soon-grid">
+    <div class="coming-soon-item">
+      <span>01</span>
+      <div>
+        <h3>PROGRAMS</h3>
+        <p>展示一覧・詳細</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>02</span>
+      <div>
+        <h3>MAP</h3>
+        <p>校内マップ</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>03</span>
+      <div>
+        <h3>TIMETABLE</h3>
+        <p>公演・ライブ等のタイムテーブル</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>04</span>
+      <div>
+        <h3>PERFORMANCE</h3>
+        <p>各展示の公演時間</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>05</span>
+      <div>
+        <h3>CONGESTION</h3>
+        <p>展示混雑状況</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>06</span>
+      <div>
+        <h3>NEWS</h3>
+        <p>山手祭の最新情報</p>
+      </div>
+    </div>
+
+    <div class="coming-soon-item">
+      <span>07</span>
+      <div>
+        <h3>DIGITAL PAMPHLET</h3>
+        <p>デジタルパンフレット</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="coming-soon-note">
+    CONTENTS WILL BE RELEASED SEQUENTIALLY.
+  </p>
+</section>
 </Layout>
 
 <style>
@@ -188,7 +289,12 @@ import Layout from '../layouts/Layout.astro';
   letter-spacing: 0.3em;
   opacity: 0.8;
 }
-
+#stella-particles {
+  width: min(90vw, 900px);
+  height: clamp(120px, 20vw, 220px);
+  display: block;
+  pointer-events: none;
+}
 .hero-title h1 {
   margin: 0;
   font-size: clamp(4rem, 12vw, 9rem);
@@ -589,23 +695,37 @@ import Layout from '../layouts/Layout.astro';
 
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 30px);
 
-  padding: 10px 18px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 11px 22px;
+
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
 
-  background: rgba(5, 8, 18, 0.55);
-  backdrop-filter: blur(10px);
+  background: rgba(5, 8, 18, 0.68);
+  backdrop-filter: blur(14px);
 }
 
-.top-nav a,
-.top-nav .nav-logo {
+.top-nav a {
   color: white;
   text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+
+  font-size: clamp(0.58rem, 0.8vw, 0.75rem);
+  letter-spacing: clamp(0.08em, 0.12vw, 0.18em);
   white-space: nowrap;
+
+  opacity: 0.68;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.top-nav a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .top-nav a {
@@ -619,9 +739,291 @@ import Layout from '../layouts/Layout.astro';
 .nav-logo {
   font-weight: 700;
 }
+
+/* =========================
+   COMING SOON
+========================= */
+
+.coming-soon-section {
+  position: relative;
+  padding: 120px 6vw 140px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(120, 140, 255, 0.12),
+      transparent 42%
+    ),
+    #05060a;
+}
+
+.coming-soon-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 70px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.7)
+  );
+}
+
+.coming-soon-heading {
+  max-width: 1100px;
+  margin: 0 auto 64px;
+}
+
+.coming-soon-heading .section-label {
+  margin-bottom: 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  opacity: 0.55;
+}
+
+.coming-soon-heading h2 {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.coming-soon-lead {
+  margin-top: 28px;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  line-height: 1.9;
+  opacity: 0.7;
+}
+
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.coming-soon-item {
+  display: flex;
+  gap: 24px;
+  min-height: 150px;
+  padding: 32px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.coming-soon-item:nth-child(odd) {
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.coming-soon-item > span {
+  align-self: flex-start;
+  padding-top: 5px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  opacity: 0.4;
+}
+
+.coming-soon-item h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.coming-soon-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.55;
+}
+
+.coming-soon-note {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  text-align: right;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  opacity: 0.35;
+}
+
+@media (max-width: 700px) {
+  .coming-soon-section {
+    padding: 90px 24px 100px;
+  }
+
+  .coming-soon-heading {
+    margin-bottom: 44px;
+  }
+
+  .coming-soon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coming-soon-item {
+    min-height: 120px;
+    padding: 26px 8px;
+  }
+
+  .coming-soon-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .coming-soon-note {
+    text-align: left;
+    line-height: 1.8;
+  }
+}
+
+/* ===== NAVIGATION ===== */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 30px);
+}
+
+.mobile-nav,
+.mobile-menu {
+  display: none;
+}
+
+/* ===== MOBILE NAVIGATION ===== */
+
+@media (max-width: 700px) {
+  .top-nav {
+    top: 14px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
+    transform: none;
+    padding: 0;
+    border-radius: 18px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    position: relative;
+    z-index: 202;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 18px;
+    box-sizing: border-box;
+  }
+
+  .mobile-logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+  }
+
+  .menu-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 36px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-button span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    z-index: 201;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 90px 32px 40px;
+    box-sizing: border-box;
+    background: rgba(5, 6, 10, 0.97);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+  }
+
+  .mobile-menu a {
+    padding: 11px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+  }
+
+  .top-nav.menu-open .mobile-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .top-nav.menu-open .menu-button span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .top-nav.menu-open .menu-button span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+}
+
 </style>
 <script>
-    const campus = document.querySelector('.campus');
+  
+  const topNav = document.querySelector('.top-nav');
+  const menuButton = document.querySelector('.menu-button');
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
+  menuButton?.addEventListener('click', () => {
+    topNav?.classList.toggle('menu-open');
+
+    const isOpen = topNav?.classList.contains('menu-open');
+    menuButton.setAttribute(
+      'aria-label',
+      isOpen ? 'メニューを閉じる' : 'メニューを開く'
+    );
+  });
+
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      topNav?.classList.remove('menu-open');
+      menuButton?.setAttribute('aria-label', 'メニューを開く');
+    });
+  });
+
+  const campus = document.querySelector('.campus');
+
 
   setTimeout(() => {
     campus?.classList.add('is-visible');
@@ -637,7 +1039,125 @@ setTimeout(() => {
 setTimeout(() => {
   subtitle?.classList.add('is-visible');
 }, 5200);
+const particleCanvas = document.getElementById('stella-particles');
 
+if (particleCanvas instanceof HTMLCanvasElement) {
+  const particleCtx = particleCanvas.getContext('2d');
+
+  if (particleCtx) {
+    const rect = particleCanvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    particleCanvas.width = Math.round(rect.width * dpr);
+    particleCanvas.height = Math.round(rect.height * dpr);
+
+    particleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // STELLAの形を読み取るための見えないcanvas
+    const textCanvas = document.createElement('canvas');
+    textCanvas.width = Math.max(1, Math.floor(rect.width));
+    textCanvas.height = Math.max(1, Math.floor(rect.height));
+
+    const textCtx = textCanvas.getContext('2d');
+
+    if (textCtx) {
+      const fontSize = Math.min(
+        rect.width / 5.3,
+        rect.height * 0.7
+      );
+
+      textCtx.fillStyle = 'white';
+      textCtx.font = `700 ${fontSize}px Arial`;
+      textCtx.textAlign = 'center';
+      textCtx.textBaseline = 'middle';
+
+      textCtx.fillText(
+        'STELLA',
+        rect.width / 2,
+        rect.height / 2
+      );
+
+      const imageData = textCtx.getImageData(
+        0,
+        0,
+        textCanvas.width,
+        textCanvas.height
+      );
+
+      const data = imageData.data;
+      const particles = [];
+
+      // STELLAの形になっている場所を粒のゴール地点にする
+      for (let y = 0; y < textCanvas.height; y += 4) {
+        for (let x = 0; x < textCanvas.width; x += 4) {
+          const index = (y * textCanvas.width + x) * 4;
+
+          if (data[index + 3] > 128) {
+            particles.push({
+              x: Math.random() * rect.width,
+              y: Math.random() * rect.height,
+              targetX: x,
+              targetY: y,
+              size: Math.random() * 1.2 + 0.8
+            });
+          }
+        }
+      }
+
+      let startTime = 0;
+      const duration = 2400;
+
+      function animateParticles(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // 最初はゆっくり、後半スッと収束
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        particleCtx.clearRect(
+          0,
+          0,
+          rect.width,
+          rect.height
+        );
+
+        for (const particle of particles) {
+          const currentX =
+            particle.x +
+            (particle.targetX - particle.x) * ease;
+
+          const currentY =
+            particle.y +
+            (particle.targetY - particle.y) * ease;
+
+          particleCtx.beginPath();
+          particleCtx.arc(
+            currentX,
+            currentY,
+            particle.size,
+            0,
+            Math.PI * 2
+          );
+
+          particleCtx.fillStyle =
+            'rgba(255, 255, 255, 0.95)';
+
+          particleCtx.fill();
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animateParticles);
+        }
+      }
+
+      // 今のオープニングに合わせて少し待ってから集合開始
+      setTimeout(() => {
+  startTime = performance.now();
+  requestAnimationFrame(animateParticles);
+}, 1500);
+    }
+  }
+}
   const canvas = document.getElementById('starfield');
 
   if (canvas instanceof HTMLCanvasElement) {

@@ -1,0 +1,280 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="stella-page">
+
+    <header class="stella-hero">
+      <p class="page-label">YAMATE FESTIVAL 2026 THEME</p>
+
+      <h1>STELLA</h1>
+      <p class="theme-jp">～60光年の閃光～</p>
+
+      <div class="hero-line"></div>
+
+      <p class="hero-message">
+        60年の軌跡を、その先の未来へ。
+      </p>
+    </header>
+
+    <section class="theme-story">
+
+      <article class="story-block">
+        <span class="number">01</span>
+
+        <div class="story-content">
+          <p class="category">60 LIGHT YEARS</p>
+          <h2>なぜ「60光年」なのか。</h2>
+
+          <p>
+            今年、山手学院は60周年という大きな節目を迎えます。
+            しかし、60周年は私たちにとってゴールではありません。
+          </p>
+
+          <p>
+            これまで積み重ねてきた歴史を大切にしながら、
+            ここからさらに次の未来へと進んでいく。
+            その思いを、宇宙における壮大な距離であり、
+            その先へも続いていく「60光年」という言葉に込めました。
+          </p>
+        </div>
+      </article>
+
+      <article class="story-block">
+        <span class="number">02</span>
+
+        <div class="story-content">
+          <p class="category">THE LIGHT</p>
+          <h2>60年間の「軌跡」を、光に。</h2>
+
+          <p>
+            遠く離れた星が放った光が、
+            長い時間をかけて地球へ届くように。
+          </p>
+
+          <p>
+            山手生が60年間積み上げてきた「軌跡」を
+            「60光年の光」に重ねました。
+          </p>
+
+          <p>
+            その光が、60周年という節目を迎えた今、
+            山手祭という一瞬に集まり、
+            爆発的な「閃光」となって輝く。
+          </p>
+        </div>
+      </article>
+
+      <article class="story-block">
+        <span class="number">03</span>
+
+        <div class="story-content">
+          <p class="category">STELLA</p>
+          <h2>一人ひとりが、自ら光を放つ。</h2>
+
+          <p>
+            「STELLA」は、自ら光を放つ「恒星」を表す言葉です。
+          </p>
+
+          <p>
+            誰かに照らされるのではなく、
+            生徒一人ひとりが主役となり、自らの力で光を放つ。
+            そんな山手祭にしたいという思いも、
+            このテーマには込められています。
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="theme-finale">
+      <p>60 YEARS OF HISTORY.</p>
+      <p>AND THE LIGHT GOES ON.</p>
+
+      <h2>STELLA</h2>
+      <span>～60光年の閃光～</span>
+    </section>
+
+    <div class="back-home">
+      <a href="/">← HOMEへ戻る</a>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .stella-page {
+    min-height: 100vh;
+    color: #fff;
+    background:
+      radial-gradient(
+        circle at 50% 8%,
+        rgba(145, 160, 255, 0.16),
+        transparent 28%
+      ),
+      #05060a;
+  }
+
+  .stella-hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 32px;
+  }
+
+  .page-label,
+  .category {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  .stella-hero h1 {
+    margin: 20px 0 0;
+    font-size: clamp(5rem, 15vw, 12rem);
+    line-height: 0.8;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+
+  .theme-jp {
+    margin: 28px 0 0;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    letter-spacing: 0.18em;
+    opacity: 0.75;
+  }
+
+  .hero-line {
+    width: 100%;
+    height: 1px;
+    margin-top: 60px;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  .hero-message {
+    margin-top: 28px;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    letter-spacing: 0.08em;
+  }
+
+  .theme-story {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .story-block {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 30px;
+    padding: 90px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .number {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    opacity: 0.35;
+  }
+
+  .story-content {
+    max-width: 760px;
+  }
+
+  .story-content h2 {
+    margin: 14px 0 35px;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .story-content p:not(.category) {
+    margin: 0 0 22px;
+    font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+    line-height: 2.1;
+    opacity: 0.72;
+  }
+
+  .theme-finale {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 24px;
+  }
+
+  .theme-finale p {
+    margin: 4px;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    opacity: 0.4;
+  }
+
+  .theme-finale h2 {
+    margin: 32px 0 15px;
+    font-size: clamp(4rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .theme-finale span {
+    letter-spacing: 0.18em;
+    opacity: 0.65;
+  }
+
+  .back-home {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  .back-home a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+  }
+
+  .back-home a:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 700px) {
+    .stella-hero {
+      min-height: 80vh;
+      padding: 100px 24px 70px;
+    }
+
+    .theme-story {
+      padding: 0 24px;
+    }
+
+    .story-block {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 60px 0;
+    }
+
+    .theme-finale {
+      min-height: 60vh;
+    }
+
+    .back-home {
+      padding: 0 24px 70px;
+    }
+  }
+</style>

@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="information-page">
+
+    <header class="information-hero">
+      <p class="page-label">YAMATE FESTIVAL 2026</p>
+      <h1>INFORMATION</h1>
+      <p class="page-title">ご来場案内</p>
+      <p class="page-lead">
+        山手祭へご来場いただく皆さまに向けた、
+        開催情報やお支払い方法などをご案内します。
+      </p>
+    </header>
+
+    <section class="information-content">
+
+      <article class="info-block">
+        <span class="number">01</span>
+
+        <div class="info-content">
+          <p class="category">DATE & TIME</p>
+          <h2>開催日時</h2>
+
+          <div class="date-list">
+            <div class="date-item">
+              <p class="date">2026.10.03 <span>SAT</span></p>
+              <p class="time">9:00 – 15:35</p>
+            </div>
+
+            <div class="date-item">
+              <p class="date">2026.10.04 <span>SUN</span></p>
+              <p class="time">9:00 – 15:15</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="info-block payment-block">
+        <span class="number">02</span>
+
+        <div class="info-content">
+          <p class="category">PAYMENT</p>
+          <h2>お支払い方法</h2>
+
+          <div class="payment-grid">
+            <div class="payment-card">
+              <p class="payment-label">生徒による飲食企画</p>
+              <h3>交通系ICカードのみ</h3>
+              <p>
+                Suica・PASMOなどの交通系ICカードをご利用いただけます。
+              </p>
+            </div>
+
+            <div class="payment-card">
+              <p class="payment-label">その他の飲食展示</p>
+              <h3>現金</h3>
+              <p>
+                保護者企画や一部の部活動などでは、現金でのお支払いをお願いいたします。
+              </p>
+            </div>
+          </div>
+
+          <div class="payment-warning">
+            <p class="warning-label">IMPORTANT</p>
+            <p>
+              学内には交通系ICカードへのチャージ機器はございません。
+              ご来場前に残高をご確認のうえ、十分にチャージしてお越しください。
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="info-block">
+        <span class="number">03</span>
+
+        <div class="info-content">
+          <p class="category">SHOES</p>
+          <h2>上履きは不要です</h2>
+
+          <p class="description">
+            校内は土足でご入場いただけます。上履きをお持ちいただく必要はありません。
+          </p>
+        </div>
+      </article>
+
+      <article class="info-block">
+        <span class="number">04</span>
+
+        <div class="info-content">
+          <p class="category">RESERVATION</p>
+          <h2>事前予約は不要です</h2>
+
+          <p class="description">
+            山手祭へのご来場に事前予約は必要ありません。
+            開催時間内に直接ご来校ください。
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="back-home">
+      <a href="/">← HOMEへ戻る</a>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .information-page {
+    min-height: 100vh;
+    color:#fff;
+    background:
+      radial-gradient(
+        circle at 75% 0%,
+        rgba(120, 140, 255, 0.13),
+        transparent 35%
+      ),
+      #05060a;
+  }
+
+  .information-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 32px 90px;
+  }
+
+  .page-label,
+  .category {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  .information-hero h1 {
+    margin: 14px 0 0;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  .page-title {
+    margin: 28px 0 0;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+  }
+
+  .page-lead {
+    max-width: 620px;
+    margin-top: 22px;
+    line-height: 2;
+    opacity: 0.65;
+  }
+
+  .information-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .info-block {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 30px;
+    padding: 70px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .number {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    opacity: 0.35;
+  }
+
+  .info-content {
+    max-width: 820px;
+  }
+
+  .info-content h2 {
+    margin: 10px 0 32px;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 500;
+  }
+
+  .description {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 2;
+    opacity: 0.72;
+  }
+
+  .date-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .date-item {
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .date {
+    margin: 0;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    letter-spacing: 0.06em;
+  }
+
+  .date span {
+    margin-left: 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    opacity: 0.5;
+  }
+
+  .time {
+    margin: 12px 0 0;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+  }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .payment-card {
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .payment-label {
+    margin: 0 0 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+  }
+
+  .payment-card h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 500;
+  }
+
+  .payment-card p:last-child {
+    margin: 0;
+    line-height: 1.9;
+    font-size: 0.9rem;
+    opacity: 0.65;
+  }
+
+  .payment-warning {
+    margin-top: 20px;
+    padding: 24px 28px;
+    border-left: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .warning-label {
+    margin: 0 0 10px;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    opacity: 0.55;
+  }
+
+  .payment-warning p:last-child {
+    margin: 0;
+    line-height: 1.9;
+    font-size: 0.9rem;
+    opacity: 0.78;
+  }
+
+  .back-home {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  .back-home a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+  }
+
+  .back-home a:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 700px) {
+    .information-hero {
+      padding: 110px 24px 70px;
+    }
+
+    .information-content {
+      padding: 0 24px;
+    }
+
+    .info-block {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 50px 0;
+    }
+
+    .date-list,
+    .payment-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .date-item,
+    .payment-card {
+      padding: 24px;
+    }
+
+    .back-home {
+      padding: 50px 24px 80px;
+    }
+  }
+</style>
