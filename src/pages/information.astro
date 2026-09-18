@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 ---
 
 <Layout>
+  <Navigation />
   <main class="information-page">
 
     <header class="information-hero">
@@ -301,6 +303,11 @@ import Layout from '../layouts/Layout.astro';
     .information-hero {
       padding: 110px 24px 70px;
     }
+    
+  .information-hero h1 {
+  font-size: clamp(2.7rem, 12vw, 4rem);
+  overflow-wrap: anywhere;
+  }
 
     .information-content {
       padding: 0 24px;

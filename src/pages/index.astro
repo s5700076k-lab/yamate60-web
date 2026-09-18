@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 ---
 
 <Layout>
@@ -11,8 +12,10 @@ import Layout from '../layouts/Layout.astro';
   </div>
   <div class="hero-title">
   <p class="eyebrow">YAMATE FESTIVAL 2026</p>
+  <div class="stella-stage">
   <canvas id="stella-particles" aria-hidden="true"></canvas>
   <h1>STELLA</h1>
+</div>
   <p class="subtitle">～60光年の閃光～</p>
   </div> 
     <!-- 山手学院の校舎 -->
@@ -39,39 +42,35 @@ import Layout from '../layouts/Layout.astro';
   <span class="rush-star"></span>
   </div>
   <canvas id="starfield"></canvas>
-  <nav class="top-nav">
-  <div class="desktop-nav">
-    <a href="#top">HOME</a>
-    <a href="/stella">STELLA</a>
-    <a href="/programs">PROGRAMS</a>
-    <a href="/map">MAP</a>
-    <a href="/timetable">TIMETABLE</a>
-    <a href="/information">INFORMATION</a>
-    <a href="/attention">ATTENTION</a>
-    <a href="#coming-soon">NEWS</a>
-  </div>
-
-  <div class="mobile-nav">
-    <a href="#top" class="mobile-logo">YAMATE FESTIVAL</a>
-
-    <button class="menu-button" type="button" aria-label="メニューを開く">
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <div class="mobile-menu">
-    <a href="#top">HOME</a>
-    <a href="/stella">STELLA</a>
-    <a href="/programs">PROGRAMS</a>
-    <a href="/map">MAP</a>
-    <a href="/timetable">TIMETABLE</a>
-    <a href="/information">INFORMATION</a>
-    <a href="/attention">ATTENTION</a>
-    <a href="#coming-soon">NEWS</a>
-  </div>
-</nav>
+  <Navigation />
   </main>
+
+<section class="countdown-section" id="countdown">
+  <p class="countdown-eyebrow">YAMATE FESTIVAL 2026</p>
+  <p class="countdown-label">BEGINS IN</p>
+
+  <div class="countdown-timer">
+    <div class="countdown-unit">
+      <span id="countdown-days">00</span>
+      <small>DAYS</small>
+    </div>
+
+    <div class="countdown-unit">
+      <span id="countdown-hours">00</span>
+      <small>HOURS</small>
+    </div>
+
+    <div class="countdown-unit">
+      <span id="countdown-minutes">00</span>
+      <small>MIN</small>
+    </div>
+
+    <div class="countdown-unit">
+      <span id="countdown-seconds">00</span>
+      <small>SEC</small>
+    </div>
+  </div>
+</section>
 
 <section class="info-section" id="information">
   <p class="section-label">INFORMATION</p>
@@ -166,16 +165,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="coming-soon-item">
-      <span>06</span>
-      <div>
-        <h3>NEWS</h3>
-        <p>山手祭の最新情報</p>
-      </div>
-    </div>
 
     <div class="coming-soon-item">
-      <span>07</span>
+      <span>06</span>
       <div>
         <h3>DIGITAL PAMPHLET</h3>
         <p>デジタルパンフレット</p>
@@ -190,12 +182,16 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+ @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
   .opening {
     position: absolute;
     inset: 0;
     background: #000;
     z-index: 100;
     animation: opening-fade 2s ease 3.6s forwards;
+  }
+  .opening.is-skipped {
+  display: none;
   }
   @keyframes opening-fade {
   from {
@@ -289,9 +285,20 @@ import Layout from '../layouts/Layout.astro';
   letter-spacing: 0.3em;
   opacity: 0.8;
 }
-#stella-particles {
+
+.stella-stage {
+  position: relative;
   width: min(90vw, 900px);
   height: clamp(120px, 20vw, 220px);
+  display: grid;
+  place-items: center;
+}
+
+#stella-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
   pointer-events: none;
 }
@@ -301,18 +308,24 @@ import Layout from '../layouts/Layout.astro';
   line-height: 0.9;
   letter-spacing: 0.08em;
   font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+
+
+
   opacity: 0;
-  transform: scale(0.92);
-  filter: blur(10px);
-  transition:
-  opacity 1.6s ease,
-  transform 1.6s ease,
-  filter 1.6s ease;
+  filter: none;
+  transition: opacity 0.8s ease;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translate(-50%, -50%);
 }
-  .hero-title h1.is-visible {
+
+.hero-title h1.is-visible {
   opacity: 1;
-  transform: scale(1);
-  filter: blur(0);
 }
 .hero-title .subtitle {
   margin: 16px 0 0;
@@ -563,20 +576,7 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
-    box-shadow:
-      45px 95px white,
-      130px 20px white,
-      215px 130px white,
-      295px 60px white,
-      380px 15px white,
-      465px 105px white,
-      550px 70px white,
-      635px 145px white,
-      720px 45px white,
-      805px 90px white,
-      890px 30px white,
-      970px 120px white;
-  }
+    
   .stars-3 {
   top: 0;
   left: 0;
@@ -878,165 +878,223 @@ import Layout from '../layouts/Layout.astro';
   }
 }
 
-/* ===== NAVIGATION ===== */
+/* ===== COUNTDOWN ===== */
 
-.desktop-nav {
+.countdown-section {
+  position: relative;
+  overflow: hidden;
+  padding: 90px 24px 100px;
+  text-align: center;
+  color: white;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(85, 110, 180, 0.16),
+      transparent 45%
+    ),
+    #02040d;
+}
+
+.countdown-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle at 12% 22%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 28% 72%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 48% 30%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 68% 65%, white 0 1px, transparent 1.5px),
+    radial-gradient(circle at 87% 25%, white 0 1px, transparent 1.5px);
+}
+
+.countdown-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  opacity: 0.55;
+}
+
+.countdown-label {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 42px;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0.45em;
+  font-weight: 600;
+}
+
+.countdown-timer {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: clamp(12px, 2vw, 30px);
+  align-items: flex-start;
+  gap: clamp(22px, 5vw, 72px);
 }
 
-.mobile-nav,
-.mobile-menu {
-  display: none;
+.countdown-unit {
+  position: relative;
+  min-width: clamp(70px, 11vw, 150px);
 }
 
-/* ===== MOBILE NAVIGATION ===== */
+.countdown-unit:not(:last-child)::after {
+  content: ":";
+  position: absolute;
+  top: 0.05em;
+  right: clamp(-40px, -2.7vw, -18px);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0.22;
+}
 
-@media (max-width: 700px) {
-  .top-nav {
-    top: 14px;
-    left: 16px;
-    right: 16px;
-    width: auto;
-    max-width: none;
-    transform: none;
-    padding: 0;
-    border-radius: 18px;
+.countdown-unit span {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-shadow:
+    0 0 18px rgba(210, 225, 255, 0.15);
+}
+
+.countdown-unit small {
+  display: block;
+  margin-top: 16px;
+  font-size: clamp(0.55rem, 1vw, 0.72rem);
+  letter-spacing: 0.25em;
+  opacity: 0.45;
+}
+
+@media (max-width: 600px) {
+  .countdown-section {
+    padding: 70px 14px 80px;
   }
 
-  .desktop-nav {
-    display: none;
+  .countdown-label {
+    margin-bottom: 34px;
   }
 
-  .mobile-nav {
-    position: relative;
-    z-index: 202;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 18px;
-    box-sizing: border-box;
+  .countdown-timer {
+    gap: 8px;
   }
 
-  .mobile-logo {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    opacity: 0.8;
+  .countdown-unit {
+    min-width: 0;
+    flex: 1;
   }
 
-  .menu-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    width: 36px;
-    height: 30px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
+  .countdown-unit:not(:last-child)::after {
+    right: -7px;
+    font-size: clamp(2rem, 10vw, 3.2rem);
   }
 
-  .menu-button span {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: #fff;
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease;
+  .countdown-unit span {
+    font-size: clamp(2.1rem, 12vw, 3.7rem);
   }
 
-  .mobile-menu {
-    position: fixed;
-    z-index: 201;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    padding: 90px 32px 40px;
-    box-sizing: border-box;
-    background: rgba(5, 6, 10, 0.97);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.35s ease,
-      visibility 0.35s ease;
-  }
-
-  .mobile-menu a {
-    padding: 11px 0;
-    color: #fff;
-    text-decoration: none;
-    font-size: clamp(1.5rem, 7vw, 2.2rem);
-    letter-spacing: 0.08em;
-    opacity: 0.65;
-  }
-
-  .top-nav.menu-open .mobile-menu {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .top-nav.menu-open .menu-button span:first-child {
-    transform: translateY(3.5px) rotate(45deg);
-  }
-
-  .top-nav.menu-open .menu-button span:last-child {
-    transform: translateY(-3.5px) rotate(-45deg);
+  .countdown-unit small {
+    margin-top: 10px;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
   }
 }
 
 </style>
 <script>
-  
-  const topNav = document.querySelector('.top-nav');
-  const menuButton = document.querySelector('.menu-button');
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
 
-  menuButton?.addEventListener('click', () => {
-    topNav?.classList.toggle('menu-open');
+// 山手祭2026 カウントダウン
+const festivalStart = new Date('2026-10-03T09:00:00+09:00');
 
-    const isOpen = topNav?.classList.contains('menu-open');
-    menuButton.setAttribute(
-      'aria-label',
-      isOpen ? 'メニューを閉じる' : 'メニューを開く'
-    );
-  });
+const countdownDays = document.getElementById('countdown-days');
+const countdownHours = document.getElementById('countdown-hours');
+const countdownMinutes = document.getElementById('countdown-minutes');
+const countdownSeconds = document.getElementById('countdown-seconds');
 
-  mobileMenuLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      topNav?.classList.remove('menu-open');
-      menuButton?.setAttribute('aria-label', 'メニューを開く');
-    });
-  });
+function updateCountdown() {
+  const now = new Date();
+  const remaining = festivalStart.getTime() - now.getTime();
 
+  if (remaining <= 0) {
+    if (countdownDays) countdownDays.textContent = '00';
+    if (countdownHours) countdownHours.textContent = '00';
+    if (countdownMinutes) countdownMinutes.textContent = '00';
+    if (countdownSeconds) countdownSeconds.textContent = '00';
+    return;
+  }
+
+  const days = Math.floor(
+    remaining / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (remaining / (1000 * 60 * 60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (remaining / (1000 * 60)) % 60
+  );
+
+  const seconds = Math.floor(
+    (remaining / 1000) % 60
+  );
+
+  if (countdownDays) {
+    countdownDays.textContent = String(days).padStart(2, '0');
+  }
+
+  if (countdownHours) {
+    countdownHours.textContent = String(hours).padStart(2, '0');
+  }
+
+  if (countdownMinutes) {
+    countdownMinutes.textContent = String(minutes).padStart(2, '0');
+  }
+
+  if (countdownSeconds) {
+    countdownSeconds.textContent = String(seconds).padStart(2, '0');
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+  const hasSeenOpening = sessionStorage.getItem('yamateOpeningSeen') === 'true';
+  const opening = document.querySelector('.opening');
+
+  if (hasSeenOpening) {
+    opening?.classList.add('is-skipped');
+  }
   const campus = document.querySelector('.campus');
 
 
+  if (hasSeenOpening) {
+  campus?.classList.add('is-visible');
+  } else {
   setTimeout(() => {
     campus?.classList.add('is-visible');
   }, 2000);
+}
 
 const stellaTitle = document.querySelector('.hero-title h1');
 const subtitle = document.querySelector('.hero-title .subtitle');
 
 
 
-setTimeout(() => {
+if (hasSeenOpening) {
   subtitle?.classList.add('is-visible');
-}, 5200);
+  } else {
+  setTimeout(() => {
+    subtitle?.classList.add('is-visible');
+    sessionStorage.setItem('yamateOpeningSeen', 'true');
+  }, 5200);
+}
+await document.fonts.load('700 100px "Space Grotesk"');
 const particleCanvas = document.getElementById('stella-particles');
 
 if (particleCanvas instanceof HTMLCanvasElement) {
@@ -1053,109 +1111,229 @@ if (particleCanvas instanceof HTMLCanvasElement) {
 
     // STELLAの形を読み取るための見えないcanvas
     const textCanvas = document.createElement('canvas');
-    textCanvas.width = Math.max(1, Math.floor(rect.width));
-    textCanvas.height = Math.max(1, Math.floor(rect.height));
+
+    textCanvas.width = Math.max(
+      1,
+      Math.floor(rect.width)
+    );
+
+    textCanvas.height = Math.max(
+      1,
+      Math.floor(rect.height)
+    );
 
     const textCtx = textCanvas.getContext('2d');
 
     if (textCtx) {
-      const fontSize = Math.min(
-        rect.width / 5.3,
-        rect.height * 0.7
-      );
+     const titleStyle = stellaTitle
+  ? getComputedStyle(stellaTitle)
+  : null;
 
-      textCtx.fillStyle = 'white';
-      textCtx.font = `700 ${fontSize}px Arial`;
-      textCtx.textAlign = 'center';
-      textCtx.textBaseline = 'middle';
+const fontSize = titleStyle
+  ? parseFloat(titleStyle.fontSize)
+  : 144;
 
-      textCtx.fillText(
-        'STELLA',
-        rect.width / 2,
-        rect.height / 2
-      );
+const fontWeight = titleStyle
+  ? titleStyle.fontWeight
+  : '700';
 
-      const imageData = textCtx.getImageData(
-        0,
-        0,
-        textCanvas.width,
-        textCanvas.height
-      );
+const text = 'STELLA';
+const letterSpacing = fontSize * 0.08;
 
-      const data = imageData.data;
-      const particles = [];
+// Canvas上で使う文字設定
+textCtx.fillStyle = 'white';
+textCtx.font =
+  `${fontWeight} ${fontSize}px "Space Grotesk", sans-serif`;
+textCtx.textBaseline = 'middle';
+textCtx.textAlign = 'left';
 
-      // STELLAの形になっている場所を粒のゴール地点にする
-      for (let y = 0; y < textCanvas.height; y += 4) {
-        for (let x = 0; x < textCanvas.width; x += 4) {
-          const index = (y * textCanvas.width + x) * 4;
+// 各文字の幅を測る
+const widths = [...text].map((char) =>
+  textCtx.measureText(char).width
+);
 
-          if (data[index + 3] > 128) {
-            particles.push({
-              x: Math.random() * rect.width,
-              y: Math.random() * rect.height,
-              targetX: x,
-              targetY: y,
-              size: Math.random() * 1.2 + 0.8
-            });
-          }
-        }
-      }
+const totalWidth =
+  widths.reduce((sum, width) => sum + width, 0) +
+  letterSpacing * (text.length - 1);
 
-      let startTime = 0;
-      const duration = 2400;
+// 粒と完成文字の両方が使う共通座標
+const textStartX =
+  (rect.width - totalWidth) / 2;
 
-      function animateParticles(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+const textY =
+  rect.height / 2;
 
-        // 最初はゆっくり、後半スッと収束
-        const ease = 1 - Math.pow(1 - progress, 3);
+// 見えないCanvasにSTELLAを描く
+let drawX = textStartX;
 
-        particleCtx.clearRect(
-          0,
-          0,
-          rect.width,
-          rect.height
-        );
+for (let i = 0; i < text.length; i++) {
+  textCtx.fillText(
+    text[i],
+    drawX,
+    textY
+  );
 
-        for (const particle of particles) {
-          const currentX =
-            particle.x +
-            (particle.targetX - particle.x) * ease;
+  drawX += widths[i] + letterSpacing;
+}
 
-          const currentY =
-            particle.y +
-            (particle.targetY - particle.y) * ease;
+// 描いたSTELLAから粒のゴール地点を作る
+const imageData = textCtx.getImageData(
+  0,
+  0,
+  textCanvas.width,
+  textCanvas.height
+);
 
-          particleCtx.beginPath();
-          particleCtx.arc(
-            currentX,
-            currentY,
-            particle.size,
-            0,
-            Math.PI * 2
-          );
+const data = imageData.data;
+const particles = [];
 
-          particleCtx.fillStyle =
-            'rgba(255, 255, 255, 0.95)';
+for (let y = 0; y < textCanvas.height; y += 4) {
+  for (let x = 0; x < textCanvas.width; x += 4) {
+    const index =
+      (y * textCanvas.width + x) * 4;
 
-          particleCtx.fill();
-        }
-
-        if (progress < 1) {
-          requestAnimationFrame(animateParticles);
-        }
-      }
-
-      // 今のオープニングに合わせて少し待ってから集合開始
-      setTimeout(() => {
-  startTime = performance.now();
-  requestAnimationFrame(animateParticles);
-}, 1500);
+    if (data[index + 3] > 128) {
+      particles.push({
+        x: Math.random() * rect.width,
+        y: Math.random() * rect.height,
+        targetX: x,
+        targetY: y,
+        size: Math.random() * 1.2 + 0.8
+      });
     }
   }
 }
+
+let startTime = 0;
+const duration = 2400;
+
+function drawSolidTitle(opacity) {
+  particleCtx.save();
+
+  particleCtx.globalAlpha = opacity;
+  particleCtx.fillStyle = 'white';
+  particleCtx.font =
+    `${fontWeight} ${fontSize}px "Space Grotesk", sans-serif`;
+  particleCtx.textBaseline = 'middle';
+  particleCtx.textAlign = 'left';
+
+  let x = textStartX;
+
+  for (let i = 0; i < text.length; i++) {
+    particleCtx.fillText(
+      text[i],
+      x,
+      textY
+    );
+
+    x += widths[i] + letterSpacing;
+  }
+
+  particleCtx.restore();
+}
+
+function animateParticles(now) {
+  const elapsed = now - startTime;
+
+  const progress = Math.min(
+    elapsed / duration,
+    1
+  );
+
+  // 最初はゆっくり、終盤でSTELLAへ集まる
+  const ease = Math.pow(progress, 3);
+
+  particleCtx.clearRect(
+    0,
+    0,
+    rect.width,
+    rect.height
+  );
+
+  // 終盤から完成文字を同じCanvas・同じ位置に出す
+  const solidProgress =
+    progress > 0.72
+      ? Math.min((progress - 0.72) / 0.28, 1)
+      : 0;
+
+  if (solidProgress > 0) {
+    drawSolidTitle(solidProgress);
+  }
+
+  // 完成文字が濃くなるほど粒を薄くする
+  const particleOpacity =
+    1 - solidProgress;
+
+  for (const particle of particles) {
+    const currentX =
+      particle.x +
+      (particle.targetX - particle.x) * ease;
+
+    const currentY =
+      particle.y +
+      (particle.targetY - particle.y) * ease;
+
+    const glow =
+      (0.35 + progress * 0.65) *
+      particleOpacity;
+
+    const size =
+      particle.size *
+      (0.75 + progress * 0.35);
+
+    particleCtx.beginPath();
+
+    particleCtx.arc(
+      currentX,
+      currentY,
+      size,
+      0,
+      Math.PI * 2
+    );
+
+    particleCtx.fillStyle =
+      `rgba(255, 255, 255, ${glow})`;
+
+    particleCtx.fill();
+  }
+
+  if (progress < 1) {
+    requestAnimationFrame(animateParticles);
+  } else {
+    // 最後は通常文字だけを100%で残す
+    particleCtx.clearRect(
+      0,
+      0,
+      rect.width,
+      rect.height
+    );
+
+    drawSolidTitle(1);
+
+    // HTML版STELLAは使わない
+    if (stellaTitle instanceof HTMLElement) {
+      stellaTitle.style.opacity = '0';
+    }
+  }
+}
+
+// STELLAの粒集合アニメーションは毎回再生
+if (stellaTitle instanceof HTMLElement) {
+  stellaTitle.style.opacity = '0';
+}
+
+// 初回はオープニングに合わせて待つ
+// 再訪・再読み込み時は粒演出だけすぐ再生
+const particleDelay = hasSeenOpening ? 300 : 3800;
+
+setTimeout(() => {
+  startTime = performance.now();
+  requestAnimationFrame(animateParticles);
+}, particleDelay);
+    }
+  }
+}
+
   const canvas = document.getElementById('starfield');
 
   if (canvas instanceof HTMLCanvasElement) {

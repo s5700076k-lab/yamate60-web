@@ -1,0 +1,199 @@
+<nav class="top-nav">
+  <div class="desktop-nav">
+    <a href="/">HOME</a>
+    <a href="/stella">STELLA</a>
+    <a href="/programs">PROGRAMS</a>
+    <a href="/map">MAP</a>
+    <a href="/timetable">TIMETABLE</a>
+    <a href="/information">INFORMATION</a>
+    <a href="/attention">ATTENTION</a>
+    <a href="/news">NEWS</a>
+  </div>
+
+  <div class="mobile-nav">
+    <a href="/" class="mobile-logo">YAMATE FESTIVAL</a>
+
+    <button class="menu-button" type="button" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu">
+    <a href="/">HOME</a>
+    <a href="/stella">STELLA</a>
+    <a href="/programs">PROGRAMS</a>
+    <a href="/map">MAP</a>
+    <a href="/timetable">TIMETABLE</a>
+    <a href="/information">INFORMATION</a>
+    <a href="/attention">ATTENTION</a>
+    <a href="/news">NEWS</a>
+  </div>
+</nav>
+
+<style>
+  .top-nav {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    padding: 11px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(5, 8, 18, 0.68);
+    backdrop-filter: blur(14px);
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 30px);
+  }
+
+  .top-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.58rem, 0.8vw, 0.75rem);
+    letter-spacing: clamp(0.08em, 0.12vw, 0.18em);
+    white-space: nowrap;
+    opacity: 0.68;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .top-nav a:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  .mobile-nav,
+  .mobile-menu {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .top-nav {
+      top: 14px;
+      left: 16px;
+      right: 16px;
+      width: auto;
+      max-width: none;
+      transform: none;
+      padding: 0;
+      border-radius: 18px;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-nav {
+      position: relative;
+      z-index: 202;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px 18px;
+      box-sizing: border-box;
+    }
+
+    .mobile-logo {
+      font-size: 0.65rem !important;
+      letter-spacing: 0.2em !important;
+      opacity: 0.8 !important;
+    }
+
+    .menu-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 36px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      z-index: 201;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      padding: 90px 32px 40px;
+      box-sizing: border-box;
+      background: rgba(5, 6, 10, 0.97);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+    }
+
+    .mobile-menu a {
+      padding: 11px 0;
+      font-size: clamp(1.5rem, 7vw, 2.2rem);
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+    }
+
+    .top-nav.menu-open .mobile-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .top-nav.menu-open .menu-button span:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .top-nav.menu-open .menu-button span:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const topNav = document.querySelector('.top-nav');
+  const menuButton = document.querySelector('.menu-button');
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
+  menuButton?.addEventListener('click', () => {
+    topNav?.classList.toggle('menu-open');
+
+    const isOpen = topNav?.classList.contains('menu-open');
+
+    menuButton.setAttribute(
+      'aria-label',
+      isOpen ? 'メニューを閉じる' : 'メニューを開く'
+    );
+  });
+
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      topNav?.classList.remove('menu-open');
+      menuButton?.setAttribute('aria-label', 'メニューを開く');
+    });
+  });
+</script>

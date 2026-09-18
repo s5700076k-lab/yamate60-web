@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 ---
 
 <Layout>
+  <Navigation />
   <main class="attention-page">
     <header class="attention-hero">
       <p class="page-label">YAMATE FESTIVAL 2026</p>
@@ -192,6 +194,11 @@ import Layout from '../layouts/Layout.astro';
     .attention-hero {
       padding: 110px 24px 70px;
     }
+
+    .attention-hero h1 {
+   font-size: clamp(2.7rem, 12vw, 4rem);
+   overflow-wrap: anywhere;
+   }
 
     .attention-content {
       padding: 0 24px;

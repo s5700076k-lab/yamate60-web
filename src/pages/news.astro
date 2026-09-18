@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<Layout>
+  <Navigation />
+
+  <main class="news-page">
+    <header class="news-hero">
+      <p class="page-label">YAMATE FESTIVAL 2026</p>
+      <h1>NEWS</h1>
+      <p class="page-title">最新情報</p>
+      <p class="page-lead">
+        山手祭2026に関する最新情報をお知らせします。
+      </p>
+    </header>
+
+    <section class="news-content">
+      <div class="news-heading">
+        <p>LATEST NEWS</p>
+      </div>
+
+      <div class="news-list">
+        <article class="news-item">
+          <time datetime="2026-09-04">2026.09.04</time>
+
+          <div class="news-text">
+            <span>INFORMATION</span>
+            <h2>山手祭2026 特設サイトを公開しました</h2>
+            <p>
+              山手祭2026「STELLA～60光年の閃光～」特設サイトを公開しました。
+              今後、展示情報や校内マップ、タイムテーブルなどを順次公開していきます。
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .news-page {
+    min-height: 100vh;
+    color: #fff;
+    background:
+      radial-gradient(circle at 70% 0%, rgba(120, 140, 255, 0.12), transparent 35%),
+      #05060a;
+  }
+
+  .news-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 32px 90px;
+  }
+
+  .page-label {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  .news-hero h1 {
+    margin: 14px 0 0;
+    font-size: clamp(4rem, 11vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  .page-title {
+    margin: 28px 0 0;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+  }
+
+  .page-lead {
+    max-width: 600px;
+    margin-top: 22px;
+    line-height: 2;
+    opacity: 0.65;
+  }
+
+  .news-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
+
+  .news-heading {
+    padding: 18px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .news-heading p {
+    margin: 0;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    opacity: 0.45;
+  }
+
+  .news-item {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 40px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .news-item time {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.45;
+  }
+
+  .news-text > span {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    opacity: 0.45;
+  }
+
+  .news-text h2 {
+    margin: 0;
+    font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .news-text p {
+    max-width: 720px;
+    margin: 18px 0 0;
+    font-size: 0.9rem;
+    line-height: 2;
+    opacity: 0.65;
+  }
+
+  @media (max-width: 700px) {
+    .news-hero {
+      padding: 110px 24px 70px;
+    }
+
+    .news-hero h1 {
+      font-size: clamp(3.5rem, 18vw, 5rem);
+    }
+
+    .news-content {
+      padding: 0 24px 90px;
+    }
+
+    .news-item {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 36px 0;
+    }
+  }
+</style>
