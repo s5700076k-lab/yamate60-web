@@ -1,23 +1,962 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+
+const schedules = {
+  day1: [
+    // 体育館
+    {
+      start: '09:25',
+      end: '09:50',
+      name: 'ダンス部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '10:10',
+      end: '10:35',
+      name: '5-3',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '10:50',
+      end: '11:15',
+      name: '5-9',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '11:30',
+      end: '11:55',
+      name: '演劇部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '12:10',
+      end: '12:35',
+      name: '5-13',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '12:50',
+      end: '13:15',
+      name: '4-7',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '13:50',
+      end: '15:00',
+      name: '吹奏楽部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+
+    // 軽音楽部
+    {
+      start: '09:45',
+      end: '10:00',
+      name: '+0',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '10:10',
+      end: '10:25',
+      name: 'Tier',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '10:35',
+      end: '10:50',
+      name: '日々幸そ',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '11:00',
+      end: '11:20',
+      name: 'SHAMY',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '12:15',
+      end: '12:35',
+      name: '非公式彼女',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '12:45',
+      end: '13:00',
+      name: 'バチコーンストライク',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '13:10',
+      end: '13:20',
+      name: '花一タ',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '13:30',
+      end: '13:50',
+      name: 'epilogue',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '14:00',
+      end: '14:15',
+      name: '夜香',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '14:25',
+      end: '14:50',
+      name: 'Kam',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+  ],
+
+  day2: [
+    // 体育館
+    {
+      start: '09:05',
+      end: '09:30',
+      name: 'チアリーダー部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '10:00',
+      end: '10:25',
+      name: '4-7',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '10:40',
+      end: '11:05',
+      name: '5-13',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '11:20',
+      end: '12:10',
+      name: '箏曲部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '12:25',
+      end: '12:50',
+      name: '5-9',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '13:05',
+      end: '13:30',
+      name: '5-3',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+    {
+      start: '13:45',
+      end: '14:10',
+      name: '合唱部',
+      venue: '体育館',
+      place: '体育館 2F',
+    },
+
+    // 軽音楽部
+    {
+      start: '09:00',
+      end: '09:20',
+      name: 'もっと真夜中でいいのに。',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '09:30',
+      end: '09:50',
+      name: 'おじぎそう。',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '10:10',
+      end: '10:20',
+      name: 'pristella',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '10:30',
+      end: '10:55',
+      name: 'TEENAGER',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '11:05',
+      end: '11:20',
+      name: 'アフロディテ',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '11:30',
+      end: '11:55',
+      name: 'Re!move',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '12:40',
+      end: '13:00',
+      name: 'Chanõa',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '13:10',
+      end: '13:20',
+      name: 'うたたね',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '13:30',
+      end: '13:55',
+      name: 'SKYHarM',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+    {
+      start: '14:05',
+      end: '14:30',
+      name: 'Musik ACT IV',
+      venue: '軽音ライブ',
+      place: '本校舎 4F 視聴覚室',
+    },
+  ],
+};
+
+schedules.day1.sort((a, b) => a.start.localeCompare(b.start));
+schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
 ---
 
-<Layout>
+<Layout title="TIMETABLE | 山手祭 2026">
   <Navigation />
-  <main style="min-height:100vh;background:#05060a;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;">
-    <p style="letter-spacing:.3em;opacity:.5;">COMING SOON</p>
 
-    <h1 style="font-size:clamp(3rem,10vw,6rem);margin:20px 0;">
-      TIMETABLE
-    </h1>
+  <main>
+    <section class="hero">
+      <div class="hero-glow"></div>
 
-    <p style="opacity:.65;line-height:1.8;">
-      公演・ライブ等のタイムテーブルを公開予定です。
-    </p>
+      <p class="eyebrow">YAMATE FESTIVAL 2026</p>
+      <h1>TIMETABLE</h1>
+      <p class="hero-jp">タイムテーブル</p>
+      <p class="lead">
+        体育館公演・軽音ライブの開催時間をご確認いただけます。
+      </p>
+    </section>
 
-    <a href="/" style="margin-top:40px;color:white;text-decoration:none;opacity:.6;">
-      ← HOMEへ戻る
-    </a>
+    <section class="timetable-section">
+      <div class="date-tabs">
+        <button class="date-tab active" data-day="day1">
+          <span class="date-number">10.03</span>
+          <span class="date-day">SAT</span>
+        </button>
+
+        <button class="date-tab" data-day="day2">
+          <span class="date-number">10.04</span>
+          <span class="date-day">SUN</span>
+        </button>
+      </div>
+
+      <div class="venue-tabs">
+        <button class="venue-tab active" data-venue="all">ALL</button>
+        <button class="venue-tab" data-venue="体育館">体育館</button>
+        <button class="venue-tab" data-venue="軽音ライブ">軽音ライブ</button>
+      </div>
+
+      <div class="schedule-wrap">
+        <div class="schedule-list active" data-schedule="day1">
+          {
+            schedules.day1.map((item) => (
+              <article
+               class="schedule-card"
+               data-card-venue={item.venue}
+               data-start={item.start}
+               data-end={item.end}
+               data-date="2026-10-03"
+>
+                <div class="time">
+                  <span class="start">{item.start}</span>
+                  <span class="dash">—</span>
+                  <span class="end">{item.end}</span>
+                </div>
+
+                 <div class="status-area">
+                   <span class="status-badge"></span>
+                </div>
+
+                <div class="event">
+                  <span
+                    class:list={[
+                      'venue-label',
+                      item.venue === '体育館'
+                        ? 'gym'
+                        : 'live',
+                    ]}
+                  >
+                    {item.venue}
+                  </span>
+
+                  <h2>{item.name}</h2>
+                  <p>{item.place}</p>
+                </div>
+
+                
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="schedule-list" data-schedule="day2">
+          {
+            schedules.day2.map((item) => (
+              <article
+               class="schedule-card"
+               data-card-venue={item.venue}
+               data-start={item.start}
+               data-end={item.end}
+               data-date="2026-10-04"
+>
+                <div class="time">
+                  <span class="start">{item.start}</span>
+                  <span class="dash">—</span>
+                  <span class="end">{item.end}</span>
+                </div>
+
+                <div class="status-area">
+                  <span class="status-badge"></span>
+                </div>
+
+                <div class="event">
+                  <span
+                    class:list={[
+                      'venue-label',
+                      item.venue === '体育館'
+                        ? 'gym'
+                        : 'live',
+                    ]}
+                  >
+                    {item.venue}
+                  </span>
+
+                  <h2>{item.name}</h2>
+                  <p>{item.place}</p>
+                </div>
+
+                
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="notice">
+        <span class="notice-mark">NOTICE</span>
+        <div>
+          <h2>体育館公演について</h2>
+          <p>
+            座席は自由席です。出入り口は後方の1カ所のみです。
+          </p>
+          <p>
+            ダンス部・チアリーダー部の公演は撮影禁止となっています。
+          </p>
+          <p>
+            体育館内は飲食禁止です。
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
+
+ <script>
+  const dateTabs =
+    document.querySelectorAll<HTMLButtonElement>('.date-tab');
+
+  const venueTabs =
+    document.querySelectorAll<HTMLButtonElement>('.venue-tab');
+
+  const scheduleLists =
+    document.querySelectorAll<HTMLElement>('.schedule-list');
+
+  const cards =
+    document.querySelectorAll<HTMLElement>('.schedule-card');
+
+  let currentDay = 'day1';
+  let currentVenue = 'all';
+
+  function updateSchedule() {
+    scheduleLists.forEach((list) => {
+      const isCurrentDay =
+        list.dataset.schedule === currentDay;
+
+      list.classList.toggle('active', isCurrentDay);
+
+      if (!isCurrentDay) return;
+
+      const listCards =
+        list.querySelectorAll<HTMLElement>('.schedule-card');
+
+      listCards.forEach((card) => {
+        const venue = card.dataset.cardVenue;
+
+        const shouldShow =
+          currentVenue === 'all' ||
+          venue === currentVenue;
+
+        card.style.display = shouldShow ? '' : 'none';
+      });
+    });
+  }
+
+  function updateLiveStatus() {
+    cards.forEach((card) => {
+      card.classList.remove('is-live', 'is-next');
+
+      const badge =
+        card.querySelector<HTMLElement>('.status-badge');
+
+      if (badge) badge.textContent = '';
+    });
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+
+    const today = `${year}-${month}-${day}`;
+
+    if (
+      today !== '2026-10-03' &&
+      today !== '2026-10-04'
+    ) {
+      return;
+    }
+
+    const nowMinutes =
+      now.getHours() * 60 + now.getMinutes();
+
+    const todayCards = Array.from(cards).filter(
+      (card) => card.dataset.date === today
+    );
+
+    const parseMinutes = (time: string) => {
+      const [hour, minute] = time.split(':').map(Number);
+      return hour * 60 + minute;
+    };
+
+    // 現在公演中
+    todayCards.forEach((card) => {
+      const start = parseMinutes(card.dataset.start || '00:00');
+      const end = parseMinutes(card.dataset.end || '00:00');
+
+      if (
+        nowMinutes >= start &&
+        nowMinutes < end
+      ) {
+        card.classList.add('is-live');
+
+        const badge =
+          card.querySelector<HTMLElement>('.status-badge');
+
+        if (badge) badge.textContent = 'LIVE';
+      }
+    });
+
+    // 会場ごとに次の公演を探す
+    ['体育館', '軽音ライブ'].forEach((venue) => {
+      const futureCards = todayCards
+        .filter(
+          (card) =>
+            card.dataset.cardVenue === venue &&
+            parseMinutes(card.dataset.start || '00:00') > nowMinutes
+        )
+        .sort(
+          (a, b) =>
+            parseMinutes(a.dataset.start || '00:00') -
+            parseMinutes(b.dataset.start || '00:00')
+        );
+
+      const nextCard = futureCards[0];
+
+      if (nextCard) {
+        nextCard.classList.add('is-next');
+
+        const badge =
+          nextCard.querySelector<HTMLElement>('.status-badge');
+
+        if (badge) badge.textContent = 'NEXT';
+      }
+    });
+  }
+
+  dateTabs.forEach((button) => {
+    button.addEventListener('click', () => {
+      currentDay = button.dataset.day || 'day1';
+
+      dateTabs.forEach((tab) =>
+        tab.classList.remove('active')
+      );
+
+      button.classList.add('active');
+
+      updateSchedule();
+    });
+  });
+
+  venueTabs.forEach((button) => {
+    button.addEventListener('click', () => {
+      currentVenue =
+        button.dataset.venue || 'all';
+
+      venueTabs.forEach((tab) =>
+        tab.classList.remove('active')
+      );
+
+      button.classList.add('active');
+
+      updateSchedule();
+    });
+  });
+
+  updateSchedule();
+  updateLiveStatus();
+
+  // 開いたままでも表示が更新される
+  setInterval(updateLiveStatus, 30000);
+</script>
 </Layout>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    margin: 0;
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(42, 86, 170, 0.16),
+        transparent 32rem
+      ),
+      #050711;
+    color: #fff;
+  }
+
+  main {
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero {
+    position: relative;
+    padding: 150px 24px 70px;
+    text-align: center;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: 50%;
+    top: -200px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(80, 140, 255, 0.18);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    margin: 0 0 18px;
+    color: #8294bd;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+  }
+
+  .hero-jp {
+    margin: 18px 0 0;
+    color: #8ea7dc;
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+  }
+
+  .lead {
+    max-width: 620px;
+    margin: 34px auto 0;
+    color: #aeb8ce;
+    line-height: 1.9;
+    font-size: 0.9rem;
+  }
+
+  .timetable-section {
+    width: min(100% - 40px, 1000px);
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .date-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .date-tab {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    min-height: 90px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.035);
+    color: #79839a;
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .date-tab:hover {
+    transform: translateY(-2px);
+  }
+
+  .date-tab.active {
+    border-color: rgba(125, 166, 255, 0.65);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(55, 92, 170, 0.28),
+        rgba(35, 48, 88, 0.2)
+      );
+    color: #fff;
+  }
+
+  .date-number {
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .date-day {
+    color: #7f9fe5;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .venue-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 26px 0 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .venue-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .venue-tab {
+    flex: 0 0 auto;
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: transparent;
+    color: #929caf;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .venue-tab.active {
+    border-color: #769cf2;
+    background: #769cf2;
+    color: #050711;
+  }
+
+  .schedule-list {
+    display: none;
+  }
+
+  .schedule-list.active {
+    display: grid;
+    gap: 10px;
+  }
+
+  .schedule-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 180px 72px 1fr;
+    align-items: center;
+    min-height: 118px;
+    padding: 22px 26px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background:
+      linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0.045),
+        rgba(255, 255, 255, 0.018)
+      );
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .schedule-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    width: 2px;
+    height: 60%;
+    background: #759cff;
+    box-shadow: 0 0 15px rgba(117, 156, 255, 0.8);
+  }
+
+  .schedule-card:hover {
+    transform: translateX(4px);
+    border-color: rgba(117, 156, 255, 0.35);
+    background:
+      linear-gradient(
+        100deg,
+        rgba(75, 108, 180, 0.12),
+        rgba(255, 255, 255, 0.02)
+      );
+  }
+
+  .time {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .start {
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .dash,
+  .end {
+    color: #657086;
+    font-size: 0.78rem;
+  }
+
+  .event {
+    min-width: 0;
+  }
+
+  .venue-label {
+    display: inline-flex;
+    margin-bottom: 9px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .venue-label.gym {
+    background: rgba(104, 139, 255, 0.13);
+    color: #8eacff;
+  }
+
+  .venue-label.live {
+    background: rgba(98, 217, 222, 0.12);
+    color: #7fe3e7;
+  }
+
+  .event h2 {
+    margin: 0;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    line-height: 1.35;
+    letter-spacing: 0.03em;
+  }
+
+  .event p {
+    margin: 6px 0 0;
+    color: #707b91;
+    font-size: 0.72rem;
+  }
+
+  .arrow {
+    color: #63708a;
+    font-size: 1.1rem;
+  }
+
+  .notice {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 28px;
+    margin-top: 55px;
+    padding: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .notice-mark {
+    color: #789bf0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .notice h2 {
+    margin: 0 0 14px;
+    font-size: 1rem;
+  }
+
+  .notice p {
+    margin: 5px 0;
+    color: #929db2;
+    font-size: 0.78rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 650px) {
+    .hero {
+      padding: 125px 20px 55px;
+    }
+
+    .timetable-section {
+      width: min(100% - 28px, 1000px);
+      padding-bottom: 80px;
+    }
+
+    .date-tab {
+      min-height: 72px;
+      border-radius: 14px;
+      gap: 7px;
+    }
+
+    .schedule-card {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      min-height: 0;
+      padding: 20px;
+    }
+
+    .time {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding-bottom: 13px;
+    }
+
+    .start {
+      font-size: 1.25rem;
+    }
+
+    .arrow {
+      display: none;
+    }
+
+    .notice {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 40px;
+      padding: 24px 4px;
+    }
+  }
+
+.status-area {
+  display: flex;
+  align-items: center;
+}
+
+.status-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.schedule-card.is-live {
+  border-color: rgba(117, 156, 255, 0.55);
+  background:
+    linear-gradient(
+      100deg,
+      rgba(74, 112, 205, 0.17),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+.schedule-card.is-live::before {
+  width: 3px;
+  background: #8badff;
+  box-shadow:
+    0 0 10px rgba(139, 173, 255, 0.9),
+    0 0 25px rgba(139, 173, 255, 0.55);
+}
+
+.schedule-card.is-live .status-badge {
+  display: inline-flex;
+  background: rgba(117, 156, 255, 0.16);
+  color: #a9c0ff;
+}
+
+.schedule-card.is-next .status-badge {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #aab3c5;
+}
+
+@media (max-width: 650px) {
+  .status-area {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+}
+
+</style>
