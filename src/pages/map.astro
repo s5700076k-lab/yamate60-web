@@ -1,23 +1,1473 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+
+const maps = [
+  {
+    id: 'overview',
+    group: 'overview',
+    label: '施設一覧',
+    floor: '',
+    image: '/images/maps/overview.png',
+  },
+
+  {
+    id: 'main-1f',
+    group: 'main',
+    label: '本校舎',
+    floor: '1F',
+    image: '/images/maps/main-1f.png',
+  },
+  {
+    id: 'main-2f',
+    group: 'main',
+    label: '本校舎',
+    floor: '2F',
+    image: '/images/maps/main-2f.png',
+  },
+  {
+    id: 'main-3f',
+    group: 'main',
+    label: '本校舎',
+    floor: '3F',
+    image: '/images/maps/main-3f.png',
+  },
+  {
+    id: 'main-4f',
+    group: 'main',
+    label: '本校舎',
+    floor: '4F',
+    image: '/images/maps/main-4f.png',
+  },
+
+  {
+    id: 'building2-2f',
+    group: 'building2',
+    label: '2号館',
+    floor: '2F',
+    image: '/images/maps/building2-2f.png',
+  },
+  {
+    id: 'building2-4f',
+    group: 'building2',
+    label: '2号館',
+    floor: '4F',
+    image: '/images/maps/building2-4f.png',
+  },
+
+  {
+    id: 'special-2f',
+    group: 'special',
+    label: '特別棟',
+    floor: '2F',
+    image: '/images/maps/special-2f.png',
+  },
+  {
+    id: 'special-3f',
+    group: 'special',
+    label: '特別棟',
+    floor: '3F',
+    image: '/images/maps/special-3f.png',
+  },
+  {
+    id: 'special-4f',
+    group: 'special',
+    label: '特別棟',
+    floor: '4F',
+    image: '/images/maps/special-4f.png',
+  },
+
+  {
+    id: 'building3-1f',
+    group: 'building3',
+    label: '3号館',
+    floor: '1F',
+    image: '/images/maps/building3-1f.png',
+  },
+  {
+    id: 'building3-2f',
+    group: 'building3',
+    label: '3号館',
+    floor: '2F',
+    image: '/images/maps/building3-2f.png',
+  },
+
+  {
+    id: 'gym-2f',
+    group: 'gym',
+    label: '体育館',
+    floor: '2F',
+    image: '/images/maps/gym-2f.png',
+  },
+
+  {
+    id: 'konandai-gate',
+    group: 'other',
+    label: '港南台門',
+    floor: '',
+    image: '/images/maps/konandai-gate.png',
+  },
+  {
+    id: 'multipurpose-court',
+    group: 'other',
+    label: '多目的コート',
+    floor: '',
+    image: '/images/maps/multipurpose-court.png',
+  },
+];
 ---
 
 <Layout>
   <Navigation />
-  <main style="min-height:100vh;background:#05060a;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;">
-    <p style="letter-spacing:.3em;opacity:.5;">COMING SOON</p>
 
-    <h1 style="font-size:clamp(3rem,10vw,6rem);margin:20px 0;">
-      MAP
-    </h1>
+  <main class="map-page">
 
-    <p style="opacity:.65;line-height:1.8;">
-      山手祭の校内マップを公開予定です。
-    </p>
+    <header class="map-hero">
+      <p class="page-label">YAMATE FESTIVAL 2026</p>
 
-    <a href="/" style="margin-top:40px;color:white;text-decoration:none;opacity:.6;">
-      ← HOMEへ戻る
-    </a>
+      <h1>MAP</h1>
+
+      <p class="page-title">校内マップ</p>
+
+      <p class="page-lead">
+        校舎・階を選択して、各企画の場所をご確認いただけます。
+        マップをクリックすると拡大して見ることができます。
+      </p>
+    </header>
+
+
+    <section class="map-content">
+
+      <div class="map-selector">
+
+        <p class="selector-label">BUILDING</p>
+
+        <div class="building-tabs">
+          <button class="building-button active" data-group="overview">
+            施設一覧
+          </button>
+
+          <button class="building-button" data-group="main">
+            本校舎
+          </button>
+
+          <button class="building-button" data-group="building2">
+            2号館
+          </button>
+
+          <button class="building-button" data-group="special">
+            特別棟
+          </button>
+
+          <button class="building-button" data-group="building3">
+            3号館
+          </button>
+
+          <button class="building-button" data-group="gym">
+            体育館
+          </button>
+
+          <button class="building-button" data-group="other">
+            その他
+          </button>
+        </div>
+
+
+        <div class="floor-area">
+
+          <p class="selector-label floor-label">
+            FLOOR / AREA
+          </p>
+
+          <div class="floor-tabs"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="current-map">
+
+        <div class="map-heading">
+          <div>
+            <p class="current-category">CAMPUS MAP</p>
+
+            <h2 class="current-title">
+              施設一覧
+            </h2>
+          </div>
+
+          <p class="zoom-guide">
+            CLICK TO EXPAND ↗
+          </p>
+        </div>
+
+
+        <button
+          class="map-image-button"
+          type="button"
+          aria-label="マップを拡大表示"
+        >
+          <img
+            class="map-image"
+            src="/images/maps/overview.png"
+            alt="山手学院 施設一覧"
+          />
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <div class="back-home">
+      <a href="/">← HOMEへ戻る</a>
+    </div>
+
   </main>
+
+
+  <!-- 拡大表示 -->
+  <div
+    class="map-modal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-top">
+
+      <div class="modal-title-area">
+        <p>YAMATE FESTIVAL 2026</p>
+        <h2 class="modal-title">施設一覧</h2>
+      </div>
+
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="閉じる"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-stage">
+
+      <div class="zoom-container">
+        <img
+          class="modal-image"
+          src="/images/maps/overview.png"
+          alt=""
+        />
+      </div>
+
+    </div>
+
+
+    <div class="zoom-controls">
+
+      <button
+        class="zoom-button zoom-out"
+        type="button"
+        aria-label="縮小"
+      >
+        −
+      </button>
+
+      <button
+        class="zoom-reset"
+        type="button"
+      >
+        RESET
+      </button>
+
+      <button
+        class="zoom-button zoom-in"
+        type="button"
+        aria-label="拡大"
+      >
+        ＋
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script define:vars={{ maps }}>
+    const buildingButtons =
+      document.querySelectorAll('.building-button');
+
+    const floorArea =
+      document.querySelector('.floor-area');
+
+    const floorTabs =
+      document.querySelector('.floor-tabs');
+
+    const currentTitle =
+      document.querySelector('.current-title');
+
+    const currentCategory =
+      document.querySelector('.current-category');
+
+    const mapImage =
+      document.querySelector('.map-image');
+
+    const mapImageButton =
+      document.querySelector('.map-image-button');
+
+
+    const modal =
+      document.querySelector('.map-modal');
+
+    const modalImage =
+      document.querySelector('.modal-image');
+
+    const modalTitle =
+      document.querySelector('.modal-title');
+
+    const modalClose =
+      document.querySelector('.modal-close');
+
+    const zoomIn =
+      document.querySelector('.zoom-in');
+
+    const zoomOut =
+      document.querySelector('.zoom-out');
+
+    const zoomReset =
+      document.querySelector('.zoom-reset');
+
+    const zoomContainer =
+      document.querySelector('.zoom-container');
+
+
+    let currentMap = maps[0];
+
+    let scale = 1;
+
+    let translateX = 0;
+
+    let translateY = 0;
+
+    let isDragging = false;
+
+    let startX = 0;
+
+    let startY = 0;
+
+
+    function updateMap(map) {
+
+      currentMap = map;
+
+      currentTitle.textContent =
+        map.floor
+          ? `${map.label} ${map.floor}`
+          : map.label;
+
+      currentCategory.textContent =
+        map.group === 'overview'
+          ? 'CAMPUS MAP'
+          : 'FLOOR MAP';
+
+      mapImage.src = map.image;
+
+      mapImage.alt =
+        `${map.label} ${map.floor} マップ`;
+
+    }
+
+
+    function createFloorButtons(group) {
+
+      floorTabs.innerHTML = '';
+
+      const groupMaps =
+        maps.filter(
+          (map) => map.group === group
+        );
+
+
+      if (
+        group === 'overview'
+      ) {
+
+        floorArea.classList.add('hidden');
+
+        updateMap(groupMaps[0]);
+
+        return;
+
+      }
+
+
+      floorArea.classList.remove('hidden');
+
+
+      groupMaps.forEach(
+        (map, index) => {
+
+          const button =
+            document.createElement('button');
+
+          button.type = 'button';
+
+          button.className =
+            'floor-button';
+
+          if (index === 0) {
+            button.classList.add('active');
+          }
+
+
+          button.textContent =
+            map.floor || map.label;
+
+
+          button.addEventListener(
+            'click',
+            () => {
+
+              document
+                .querySelectorAll(
+                  '.floor-button'
+                )
+                .forEach(
+                  (item) =>
+                    item.classList.remove(
+                      'active'
+                    )
+                );
+
+
+              button.classList.add(
+                'active'
+              );
+
+
+              updateMap(map);
+
+            }
+          );
+
+
+          floorTabs.appendChild(
+            button
+          );
+
+        }
+      );
+
+
+      if (groupMaps.length > 0) {
+        updateMap(groupMaps[0]);
+      }
+
+    }
+
+
+    buildingButtons.forEach(
+      (button) => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            buildingButtons.forEach(
+              (item) =>
+                item.classList.remove(
+                  'active'
+                )
+            );
+
+
+            button.classList.add(
+              'active'
+            );
+
+
+            createFloorButtons(
+              button.dataset.group
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    function applyTransform() {
+
+      modalImage.style.transform =
+        `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+    }
+
+
+    function resetZoom() {
+
+      scale = 1;
+
+      translateX = 0;
+
+      translateY = 0;
+
+      applyTransform();
+
+    }
+
+
+    function openModal() {
+
+      modalImage.src =
+        currentMap.image;
+
+      modalTitle.textContent =
+        currentMap.floor
+          ? `${currentMap.label} ${currentMap.floor}`
+          : currentMap.label;
+
+      resetZoom();
+
+      modal.classList.add('open');
+
+      modal.setAttribute(
+        'aria-hidden',
+        'false'
+      );
+
+      document.body.style.overflow =
+        'hidden';
+
+    }
+
+
+    function closeModal() {
+
+      modal.classList.remove('open');
+
+      modal.setAttribute(
+        'aria-hidden',
+        'true'
+      );
+
+      document.body.style.overflow =
+        '';
+
+    }
+
+
+    mapImageButton.addEventListener(
+      'click',
+      openModal
+    );
+
+
+    modalClose.addEventListener(
+      'click',
+      closeModal
+    );
+
+
+    modal.addEventListener(
+      'click',
+      (event) => {
+
+        if (
+          event.target === modal
+        ) {
+          closeModal();
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      'keydown',
+      (event) => {
+
+        if (
+          event.key === 'Escape' &&
+          modal.classList.contains('open')
+        ) {
+          closeModal();
+        }
+
+      }
+    );
+
+
+    zoomIn.addEventListener(
+      'click',
+      () => {
+
+        scale = Math.min(
+          scale + 0.25,
+          4
+        );
+
+        applyTransform();
+
+      }
+    );
+
+
+    zoomOut.addEventListener(
+      'click',
+      () => {
+
+        scale = Math.max(
+          scale - 0.25,
+          0.75
+        );
+
+        applyTransform();
+
+      }
+    );
+
+
+    zoomReset.addEventListener(
+      'click',
+      resetZoom
+    );
+
+
+    /* =========================
+       DRAG
+    ========================= */
+
+    modalImage.addEventListener(
+      'pointerdown',
+      (event) => {
+
+        if (scale <= 1) return;
+
+        isDragging = true;
+
+        startX =
+          event.clientX - translateX;
+
+        startY =
+          event.clientY - translateY;
+
+        modalImage.setPointerCapture(
+          event.pointerId
+        );
+
+        modalImage.classList.add(
+          'dragging'
+        );
+
+      }
+    );
+
+
+    modalImage.addEventListener(
+      'pointermove',
+      (event) => {
+
+        if (!isDragging) return;
+
+        translateX =
+          event.clientX - startX;
+
+        translateY =
+          event.clientY - startY;
+
+        applyTransform();
+
+      }
+    );
+
+
+    modalImage.addEventListener(
+      'pointerup',
+      () => {
+
+        isDragging = false;
+
+        modalImage.classList.remove(
+          'dragging'
+        );
+
+      }
+    );
+
+
+    modalImage.addEventListener(
+      'pointercancel',
+      () => {
+
+        isDragging = false;
+
+        modalImage.classList.remove(
+          'dragging'
+        );
+
+      }
+    );
+
+
+    /* =========================
+       WHEEL ZOOM
+    ========================= */
+
+    zoomContainer.addEventListener(
+      'wheel',
+      (event) => {
+
+        event.preventDefault();
+
+        if (event.deltaY < 0) {
+
+          scale = Math.min(
+            scale + 0.15,
+            4
+          );
+
+        } else {
+
+          scale = Math.max(
+            scale - 0.15,
+            0.75
+          );
+
+        }
+
+        applyTransform();
+
+      },
+      { passive: false }
+    );
+
+
+    /* 初期状態 */
+    createFloorButtons('overview');
+
+  </script>
+
 </Layout>
+
+
+<style>
+
+  .map-page {
+    min-height: 100vh;
+
+    color: #fff;
+
+    background:
+      radial-gradient(
+        circle at 75% 0%,
+        rgba(120, 140, 255, 0.13),
+        transparent 35%
+      ),
+      #05060a;
+  }
+
+
+  /* =========================
+     HERO
+  ========================= */
+
+  .map-hero {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+      140px 32px 90px;
+  }
+
+
+  .page-label,
+  .selector-label,
+  .current-category {
+    margin: 0;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.3em;
+
+    opacity: 0.5;
+  }
+
+
+  .map-hero h1 {
+    margin: 14px 0 0;
+
+    font-size:
+      clamp(3.5rem, 10vw, 8rem);
+
+    line-height: 0.9;
+
+    letter-spacing: 0.04em;
+
+    font-weight: 600;
+  }
+
+
+  .page-title {
+    margin: 28px 0 0;
+
+    font-size:
+      clamp(1.3rem, 2vw, 1.8rem);
+  }
+
+
+  .page-lead {
+    max-width: 650px;
+
+    margin-top: 22px;
+
+    line-height: 2;
+
+    opacity: 0.65;
+  }
+
+
+  /* =========================
+     CONTENT
+  ========================= */
+
+  .map-content {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 0 32px;
+
+    border-top:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.18
+      );
+  }
+
+
+  /* =========================
+     SELECTOR
+  ========================= */
+
+  .map-selector {
+    padding: 55px 0;
+
+    border-bottom:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.18
+      );
+  }
+
+
+  .building-tabs,
+  .floor-tabs {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 18px;
+  }
+
+
+  .building-button,
+  .floor-button {
+    appearance: none;
+
+    border:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.18
+      );
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.02
+      );
+
+    color: rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+    padding:
+      13px 20px;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+
+  .building-button:hover,
+  .floor-button:hover {
+    color: #fff;
+
+    border-color:
+      rgba(
+        255,
+        255,
+        255,
+        0.5
+      );
+  }
+
+
+  .building-button.active,
+  .floor-button.active {
+    color: #05060a;
+
+    background: #fff;
+
+    border-color: #fff;
+  }
+
+
+  .floor-area {
+    margin-top: 38px;
+  }
+
+
+  .floor-area.hidden {
+    display: none;
+  }
+
+
+  .floor-label {
+    opacity: 0.35;
+  }
+
+
+  /* =========================
+     CURRENT MAP
+  ========================= */
+
+  .current-map {
+    padding: 65px 0 75px;
+  }
+
+
+  .map-heading {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content:
+      space-between;
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+  }
+
+
+  .current-title {
+    margin:
+      10px 0 0;
+
+    font-size:
+      clamp(
+        1.8rem,
+        4vw,
+        3rem
+      );
+
+    font-weight: 500;
+  }
+
+
+  .zoom-guide {
+    margin: 0;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.18em;
+
+    opacity: 0.4;
+  }
+
+
+  .map-image-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 35px;
+
+    border:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.16
+      );
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.025
+      );
+
+    cursor: zoom-in;
+  }
+
+
+  .map-image {
+    display: block;
+
+    width: 100%;
+
+    max-height: 680px;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+
+    background: #fff;
+  }
+
+
+  /* =========================
+     BACK
+  ========================= */
+
+  .back-home {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+      0 32px 100px;
+  }
+
+
+  .back-home a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.15em;
+
+    opacity: 0.6;
+  }
+
+
+  .back-home a:hover {
+    opacity: 1;
+  }
+
+
+  /* =========================
+     MODAL
+  ========================= */
+
+  .map-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    flex-direction: column;
+
+    background: #030408;
+
+    color: #fff;
+  }
+
+
+  .map-modal.open {
+    display: flex;
+  }
+
+
+  .modal-top {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding:
+      22px 30px;
+
+    border-bottom:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.15
+      );
+  }
+
+
+  .modal-title-area p {
+    margin: 0 0 6px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.25em;
+
+    opacity: 0.4;
+  }
+
+
+  .modal-title {
+    margin: 0;
+
+    font-size:
+      clamp(
+        1.1rem,
+        3vw,
+        1.6rem
+      );
+
+    font-weight: 500;
+  }
+
+
+  .modal-close {
+    appearance: none;
+
+    border: none;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 2rem;
+
+    font-weight: 200;
+
+    cursor: pointer;
+
+    opacity: 0.7;
+  }
+
+
+  .modal-close:hover {
+    opacity: 1;
+  }
+
+
+  .modal-stage {
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    overflow: hidden;
+  }
+
+
+  .zoom-container {
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+  }
+
+
+  .modal-image {
+    display: block;
+
+    max-width: 92%;
+
+    max-height: 92%;
+
+    object-fit: contain;
+
+    background: #fff;
+
+    user-select: none;
+
+    touch-action: none;
+
+    cursor: grab;
+
+    transform-origin: center center;
+
+    transition:
+      transform 0.08s linear;
+  }
+
+
+  .modal-image.dragging {
+    cursor: grabbing;
+
+    transition: none;
+  }
+
+
+  .zoom-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding:
+      16px 20px 22px;
+
+    border-top:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.12
+      );
+  }
+
+
+  .zoom-button,
+  .zoom-reset {
+    appearance: none;
+
+    min-width: 50px;
+
+    height: 44px;
+
+    padding: 0 16px;
+
+    border:
+      1px solid rgba(
+        255,
+        255,
+        255,
+        0.22
+      );
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.04
+      );
+
+    color: #fff;
+
+    cursor: pointer;
+  }
+
+
+  .zoom-button {
+    font-size: 1.3rem;
+  }
+
+
+  .zoom-reset {
+    font-size: 0.65rem;
+
+    letter-spacing: 0.14em;
+
+    opacity: 0.75;
+  }
+
+
+  .zoom-button:hover,
+  .zoom-reset:hover {
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.1
+      );
+  }
+
+
+  /* =========================
+     MOBILE
+  ========================= */
+
+  @media (
+    max-width: 700px
+  ) {
+
+    .map-hero {
+      padding:
+        110px 24px 70px;
+    }
+
+
+    .map-hero h1 {
+      font-size:
+        clamp(
+          2.7rem,
+          15vw,
+          4.5rem
+        );
+    }
+
+
+    .map-content {
+      padding: 0 24px;
+    }
+
+
+    .map-selector {
+      padding: 45px 0;
+    }
+
+
+    .building-tabs,
+    .floor-tabs {
+      gap: 8px;
+    }
+
+
+    .building-button,
+    .floor-button {
+      padding:
+        11px 14px;
+
+      font-size: 0.72rem;
+    }
+
+
+    .current-map {
+      padding:
+        50px 0 60px;
+    }
+
+
+    .map-heading {
+      align-items:
+        flex-start;
+
+      flex-direction:
+        column;
+
+      gap: 12px;
+    }
+
+
+    .map-image-button {
+      padding: 12px;
+    }
+
+
+    .map-image {
+      max-height: 520px;
+    }
+
+
+    .back-home {
+      padding:
+        0 24px 80px;
+    }
+
+
+    .modal-top {
+      padding:
+        16px 18px;
+    }
+
+
+    .modal-stage {
+      padding: 10px;
+    }
+
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+
+    .zoom-controls {
+      padding:
+        12px 12px 18px;
+    }
+
+  }
+
+:global(.floor-button) {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 13px 20px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:global(.floor-button:hover) {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+:global(.floor-button.active) {
+  color: #05060a;
+  background: #fff;
+  border-color: #fff;
+}
+
+@media (max-width: 700px) {
+  :global(.floor-button) {
+    padding: 11px 14px;
+    font-size: 0.72rem;
+  }
+}
+
+</style>
