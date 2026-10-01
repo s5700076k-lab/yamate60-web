@@ -1,0 +1,52 @@
+---
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>混雑情報 接続テスト</title>
+  </head>
+
+  <body>
+    <main>
+      <h1>展示混雑状況 接続テスト</h1>
+
+      <div class="card">
+        <p>1-1</p>
+        <div id="congestion-result">
+          データを取得しています...
+        </div>
+      </div>
+    </main>
+    <script>
+  const result = document.getElementById('congestion-result');
+
+  const API_URL = 'https://script.google.com/macros/s/AKfycbxSg6KCtM7BS81JoNiLTFIwT8XBD3mFwgRb8k8i8cTY0laXTmuCA7LDZbeiD8Nxk913/exec';
+
+  async function loadCongestion() {
+    try {
+      const response = await fetch(`${API_URL}?class=1-2`);
+      const data = await response.json();
+
+      if (result) {
+        result.innerHTML = `
+          <p><strong>待ち人数：</strong>${data.waiting}人</p>
+          <p><strong>混雑状況：</strong>${data.status}</p>
+          <p><strong>最終更新：</strong>${data.time}</p>
+          <p><strong>場所：</strong>${data.building} ${data.floor} ${data.room}</p>
+        `;
+      }
+    } catch (error) {
+      console.error(error);
+
+      if (result) {
+        result.textContent = 'データの取得に失敗しました';
+      }
+    }
+  }
+
+  loadCongestion();
+</script>
+  </body>
+</html>ssssssss

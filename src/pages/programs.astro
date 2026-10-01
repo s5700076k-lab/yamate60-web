@@ -47,7 +47,9 @@ console.log('PROGRAMS DATA:', programs);
             data-search={`${program.title} ${program.group}`}
           >
             <div class="card-top">
-              <span class="category">{program.category}</span>
+              <span class="category" data-category={program.category}>
+               {program.category}
+               </span>
               <span class="group">{program.group}</span>
             </div>
 
@@ -61,13 +63,14 @@ console.log('PROGRAMS DATA:', programs);
                 {program.building} {program.floor} {program.room}
               </p>
 
-              <button
+             <button
   class="detail-button"
   data-title={program.title}
   data-group={program.group}
   data-category={program.category}
-  data-place={`${program.building} ${program.floor} ${program.room}`}
+  data-place={[program.building, program.floor, program.room].filter(Boolean).join(' ')}
   data-description={program.description}
+  data-congestion-id={program.group}
 >
   DETAIL →
 </button>
@@ -97,10 +100,17 @@ console.log('PROGRAMS DATA:', programs);
 
     <p class="detail-description" id="detail-description"></p>
 
-    <div class="detail-info">
-      <p class="detail-info-label">LOCATION</p>
-      <p id="detail-place"></p>
+   <div class="detail-info-grid">
+  <div class="detail-info">
+    <p class="detail-info-label">LOCATION</p>
+    <p id="detail-place"></p>
+  </div>
+
+  <div class="detail-info">
+    <p class="detail-info-label">WAIT TIME</p>
+    <p id="detail-waiting">--</p>
     </div>
+   </div>
   </div>
 </div>
   </main>
@@ -187,6 +197,11 @@ const detailDescription =
 const detailPlace =
   document.querySelector<HTMLElement>('#detail-place');
 
+const detailWait =
+  document.querySelector<HTMLElement>('#detail-wait');
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbxSg6KCtM7BS81JoNiLTFIwT8XBD3mFwgRb8k8i8cTY0laXTmuCA7LDZbeiD8Nxk913/exec';
 
 function closeDetail() {
   detailOverlay?.classList.remove('is-open');
@@ -198,6 +213,40 @@ function closeDetail() {
 
 detailButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    const congestionGroup = button.dataset.congestionId ?? '';
+    console.log('混雑ID確認:', congestionGroup);
+    const classMatch = congestionGroup.match(/^(\d)年(\d+)組$/);
+
+    let congestionId = '';
+
+    if (classMatch) {
+      congestionId = `${classMatch[1]}-${classMatch[2]}`;
+    }
+    console.log('変換後ID:', congestionId);
+    if (detailWait) {
+  detailWait.textContent = '取得中...';
+}
+
+if (congestionId && detailWait) {
+  fetch(`${API_URL}?class=${encodeURIComponent(congestionId)}`)
+    .then((response) => response.json())
+    .then((data) => {
+      detailWait.innerHTML = `
+        <strong>${data.waiting}人待ち</strong><br>
+        <span>${data.status}</span><br>
+        <small>${data.time} 更新</small>
+      `;
+    })
+    .catch((error) => {
+      console.error(error);
+      detailWait.textContent = '取得できませんでした';
+    });
+} else if (detailWait) {
+  detailWait.textContent = '--';
+}
+    if (detailTitle) {
+      detailTitle.textContent = button.dataset.title ?? '';
+    }
     if (detailTitle) {
       detailTitle.textContent = button.dataset.title ?? '';
     }
@@ -207,8 +256,11 @@ detailButtons.forEach((button) => {
     }
 
     if (detailCategory) {
-      detailCategory.textContent = button.dataset.category ?? '';
-    }
+  const category = button.dataset.category ?? '';
+
+  detailCategory.textContent = category;
+  detailCategory.dataset.category = category;
+}
 
     if (detailDescription) {
       detailDescription.textContent = button.dataset.description ?? '';
@@ -336,7 +388,42 @@ document.addEventListener('keydown', (event) => {
     background: white;
     color: #08090d;
   }
+  /* ===== FILTER CATEGORY COLORS ===== */
 
+.filters button[data-category="お化け屋敷"] {
+  color: #d653a6;
+  border-color: #d653a6;
+}
+
+.filters button[data-category="縁日・遊び"] {
+  color: #55c99a;
+  border-color: #55c99a;
+}
+
+.filters button[data-category="劇・ミュージカル"] {
+  color: #f27c9d;
+  border-color: #f27c9d;
+}
+
+.filters button[data-category="飲食店"] {
+  color: #f2c84b;
+  border-color: #f2c84b;
+}
+
+.filters button[data-category="部活・委員会"] {
+  color: #f09a45;
+  border-color: #f09a45;
+}
+
+.filters button[data-category="学年企画展示"] {
+  color: #63c7e6;
+  border-color: #63c7e6;
+}
+
+.filters button[data-category="その他"] {
+  color: #6bb6d9;
+  border-color: #6bb6d9;
+}
   .program-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -423,12 +510,84 @@ document.addEventListener('keydown', (event) => {
   }
 
   .category {
-    opacity: 0.55;
-  }
+  opacity: 1;
+  font-weight: 700;
+}
 
+/* パンフレット準拠のカテゴリカラー */
+.category[data-category="お化け屋敷"] {
+  color: #d653a6;
+}
+
+.category[data-category="縁日・遊び"] {
+  color: #55c99a;
+}
+
+.category[data-category="劇・ミュージカル"] {
+  color: #f27c9d;
+}
+
+.category[data-category="飲食店"] {
+  color: #f2c84b;
+}
+
+.category[data-category="部活・委員会"] {
+  color: #f09a45;
+}
+
+.category[data-category="学年企画展示"] {
+  color: #63c7e6;
+}
+
+.category[data-category="その他"] {
+  color: #6bb6d9;
+}
+#detail-group {
+  margin-top: 14px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+/* DETAIL画面のカテゴリカラー */
+#detail-category {
+  font-weight: 700;
+}
+
+#detail-category[data-category="お化け屋敷"] {
+  color: #d653a6;
+}
+
+#detail-category[data-category="縁日・遊び"] {
+  color: #55c99a;
+}
+
+#detail-category[data-category="劇・ミュージカル"] {
+  color: #f27c9d;
+}
+
+#detail-category[data-category="飲食店"] {
+  color: #f2c84b;
+}
+
+#detail-category[data-category="部活・委員会"] {
+  color: #f09a45;
+}
+
+#detail-category[data-category="学年企画展示"] {
+  color: #63c7e6;
+}
+
+#detail-category[data-category="その他"] {
+  color: #6bb6d9;
+}
   .group {
-    opacity: 0.85;
-  }
+  opacity: 1;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
 
   .program-card h2 {
     margin: 35px 0 16px;
@@ -643,7 +802,22 @@ document.addEventListener('keydown', (event) => {
 
   color: rgba(255, 255, 255, 0.68);
 }
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 
+  margin-top: 60px;
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.detail-info-grid .detail-info {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
 .detail-info {
   margin-top: 60px;
   padding-top: 25px;

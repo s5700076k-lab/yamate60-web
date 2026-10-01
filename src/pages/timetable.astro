@@ -325,11 +325,15 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
                     {item.venue}
                   </span>
 
-                  <h2>{item.name}</h2>
-                  <p>{item.place}</p>
-                </div>
+                 　<h2>{item.name}</h2>
 
-                
+　　　　　　　　　　{item.name === 'ダンス部' && (
+  　　　　　　　　　<span class="photo-ban">撮影禁止</span>
+　　　　　　　　　　　)}
+
+　　　　　　　　　　<p>{item.place}</p>
+
+                </div>
               </article>
             ))
           }
@@ -367,8 +371,13 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
                     {item.venue}
                   </span>
 
-                  <h2>{item.name}</h2>
-                  <p>{item.place}</p>
+                 <h2>{item.name}</h2>
+
+{item.name === 'チアリーダー部' && (
+  <span class="photo-ban">撮影禁止</span>
+)}
+
+<p>{item.place}</p>
                 </div>
 
                 
@@ -957,6 +966,21 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
     top: 18px;
     right: 18px;
   }
+}
+
+.photo-ban {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 130, 130, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 90, 90, 0.08);
+  color: #ffaaaa;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 </style>

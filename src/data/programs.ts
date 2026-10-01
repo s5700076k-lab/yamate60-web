@@ -8,6 +8,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '2F',
+    room: '1-1教室',
     description:
       'みんなで作り上げたホラーな脱出ゲームです！数々の謎を解いて教室から脱出しましょう。',
   },
@@ -17,6 +18,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '2F',
+    room: '1-2教室',
     description:
       '参加者は宝物を探しながら逃げます。鬼（以前この教室で死んだ生徒）は参加者を見つけるように探します。',
   },
@@ -26,6 +28,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '本校舎',
     floor: '2F',
+    room: '1-3教室',
     description: 'コナンを題材とした3幕構成の劇をぜひ見に来てね！',
   },
   {
@@ -34,6 +37,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '2F',
+    room: '1-4教室',
     description:
       'クイズ、射的、競馬、モグラ叩きを用意しました。景品もあります。ぜひ、来てください！',
   },
@@ -43,6 +47,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '本校舎',
     floor: '2F',
+    room: '1-5教室',
     description:
       'この世の悪を退治するために生まれた桃太郎が悪者と噂される鬼を退治しに行く、いつもとちょっと違う桃太郎です。',
   },
@@ -56,6 +61,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '2F',
+    room: '2-1教室',
     description:
       'クラスで考え出したこのカジノは果たして普通のカジノなのかそれとも裏ありカジノなのか答えは自分で確かめよう！',
   },
@@ -63,8 +69,9 @@ export const programs = [
     group: '2年2組',
     title: 'いざ脱獄 ～60光年先へ～',
     category: 'その他',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '2F',
+    room: '2-2教室',
     description:
       '宇宙にある監獄に冤罪で捕まってしまった！ゲームをクリアし脱獄しよう！',
   },
@@ -72,8 +79,9 @@ export const programs = [
     group: '2年3組',
     title: '44人目のクラスメイト',
     category: 'お化け屋敷',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '2F',
+    room: '2-3教室',
     description:
       '2－3で起きた殺人事件の真相に迫る没入型謎解きお化け屋敷。クラスは謎に包まれているラスト恐怖、そして衝撃',
   },
@@ -81,8 +89,9 @@ export const programs = [
     group: '2年4組',
     title: '緑日 ～あなたへ送る星火祭～',
     category: '縁日・遊び',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '2F',
+    room: '2-4教室',
     description:
       '人間モグラ叩きや缶倒しといった普通の縁日とは違う面白いブースになっています！',
   },
@@ -90,8 +99,9 @@ export const programs = [
     group: '2年5組',
     title: 'BUSTER2 5HOST',
     category: 'その他',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '2F',
+    room: '2-5教室',
     description:
       '廃校に行った後行方不明になった生徒を助けに行く恐怖と隣り合わせの対戦型シューティングゲームです。',
   },
@@ -105,6 +115,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '本校舎',
     floor: '1F',
+    room: '3-1教室',
     description:
       '笑顔の裏に隠された真実とは。3年1組が贈る衝撃の物語をぜひご覧ください。',
   },
@@ -114,6 +125,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '1F',
+    room: '3-2教室',
     description:
       '常識的な問題から考えないとわからない問題まで幅広く出題します！AとBの選択肢の中であなたは一流になれますか？',
   },
@@ -123,6 +135,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '本校舎',
     floor: '1F',
+    room: '3-3教室',
     description:
       'あの『今日から俺は！！』が3年3組を舞台に大暴れ！笑いあり、熱さありの青春コメディを3組の絆と共にお届けします。',
   },
@@ -132,6 +145,7 @@ export const programs = [
   category: 'お化け屋敷',
   building: '本校舎',
   floor: '2F',
+  room: '3-4教室',
   description:
     '静寂に包まれた場所で何かがあなたを待っている。あなたは無事に帰れるだろうか。',
   },
@@ -141,6 +155,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '2F',
+    room: '3-5教室',
     description:
       '深夜の工場でバラバラになったヒーローたちの「体」を集め、無事に脱出できるのか？あなたの勇気が試される・・・。',
   },
@@ -150,6 +165,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '2F',
+    room: '3-6教室',
     description:
       'サッカー、バスケットボール、卓球、ストラックアウト、ボウリングを楽しむことができるアミューズメント施設です。',
   },
@@ -163,6 +179,7 @@ export const programs = [
     category: '飲食店',
     building: '3号館',
     floor: '2F',
+    room: '4-1教室',
     description:
       'カフェと居酒屋が合わさった非日常的な体験を！！20歳未満もご利用いただけます！',
   },
@@ -172,6 +189,7 @@ export const programs = [
     category: 'その他',
     building: '本校舎',
     floor: '4F',
+    room: '4-2教室',
     description:
       '煌びやかなラスベガスのようなところでポーカーやルーレットで熱い勝負を楽しもう！',
   },
@@ -179,8 +197,9 @@ export const programs = [
     group: '4年3組',
     title: '機械病院 ～ChatGPTに囚われて～',
     category: 'お化け屋敷',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '4F',
+    room: '4-3教室',
     description:
       'ここはX年後の病院。ここではすべてChatGPTの力で人間を治療していく。あなたはどんな病気？',
   },
@@ -190,6 +209,7 @@ export const programs = [
     category: '飲食店',
     building: '多目的コート',
     floor: '',
+    room: '模擬店エリア',
     description:
       '私たちは多目的コートで「たこ殴り」という名前のお店でたこ焼きを販売します。熱々で提供するのでぜひ来てください！',
   },
@@ -197,8 +217,9 @@ export const programs = [
     group: '4年5組',
     title: 'VEGAS in 4-5',
     category: '縁日・遊び',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '4F',
+    room: '4-5教室',
     description:
       '「勝つのは君だ！」ドキドキ、ワクワクのカジノへようこそ♪一足入れば気分はカジノ！誰でも気軽に楽しめます！',
   },
@@ -206,8 +227,9 @@ export const programs = [
     group: '4年6組',
     title: 'きしむらンド',
     category: 'お化け屋敷',
-    building: '本校舎別館',
+    building: '2号館',
     floor: '4F',
+    room: '4-6教室',
     description:
       '閉園したはずの遊園地が、なぜか動いている。観覧車も、乗り物も、そしてピエロも。1度入ったらもう戻れない。',
   },
@@ -217,6 +239,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '笑いあり、感動あり！千と仲間たちが織りなす新たな「千と千尋の神隠し」。',
   },
@@ -226,6 +249,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '3号館',
     floor: '1F',
+    room: '4-8展示場所',
     description:
       'ミラーボールが輝く非日常へ！未成年も安心！酔うのは雰囲気だけ！CULB∞TAMIXで酔っていきませんか？',
   },
@@ -235,6 +259,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '4F',
+    room: '4-9教室',
     description:
       '呪われた廃線から脱出していく中で現れる異形を討伐していくアトラクション型お化け屋敷です。',
   },
@@ -244,6 +269,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '本校舎',
     floor: '4F',
+    room: '4-10教室',
     description:
       '東卍結成直後に起きた初めての抗争、仲間を守るための初陣をとくとご覧あれ。',
   },
@@ -253,6 +279,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '4F',
+    room: '4-11教室',
     description:
       '11組が夢の国に大変身！？手作りトイマニで大熱狂！狙いを定めてハイスコアを叩き出せ！無限の彼方へさあ行くぞ！',
   },
@@ -262,6 +289,7 @@ export const programs = [
     category: '飲食店',
     building: '多目的コート',
     floor: '',
+    room: '模擬店エリア',
     description:
       '贅沢なクロワッサンを薄くプレスして、カリカリ・パリパリに焼き上げた新食感スイーツです。',
   },
@@ -271,6 +299,7 @@ export const programs = [
     category: '飲食店',
     building: '3号館',
     floor: '2F',
+    room: '4-13飲食スペース',
     description:
       'スナックって緊張する？そんなあなたも大歓迎！笑顔溢れるSNACK CHURROで、チュロスとドリンクをどうぞ！',
   },
@@ -284,6 +313,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '本校舎',
     floor: '1F',
+    room: '5-1教室',
     description:
       '5年1組で一風変わったVRアトラクションを体験してみませんか…？',
   },
@@ -293,6 +323,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '1F',
+    room: '5-2教室',
     description:
       '結婚式で2人を惨殺し、花嫁の指を持ち帰った殺血娘。狂気に満ちた彼女の部屋から、奪われた指を探し出せ！',
   },
@@ -302,6 +333,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '転校をきっかけにツッパリになった三橋と伊藤。問題児2人の笑いあり騒ぎありの高校生活、その結末はいかに？',
   },
@@ -311,6 +343,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '4F',
+    room: '5-4教室',
     description:
       '妹のように美しい別荘。メイドが一人、また一人と姿を消していく。警察として調査し、事件の真相を解き明かせ。',
   },
@@ -320,6 +353,7 @@ export const programs = [
     category: '飲食店',
     building: '3号館',
     floor: '2F',
+    room: '5-5教室',
     description:
       '色とりどりの星に囲まれながら、ひとやすみしませんか？まるで夢の中にいるような特別な時間を過ごせます♪',
   },
@@ -329,6 +363,7 @@ export const programs = [
     category: 'その他',
     building: '特別棟',
     floor: '4F',
+    room: '5-6教室',
     description:
       'ベイマックスの宇宙船がブラックホールに！？皆のハピネスパワーで愉快な大回転をさせ、絶体絶命のピンチを脱出せよ！',
   },
@@ -338,6 +373,7 @@ export const programs = [
     category: 'その他',
     building: '特別棟',
     floor: '4F',
+    room: '5-7教室',
     description:
       '世界史クラスによる、エジプトをテーマにした脱出ゲームです！各ゲームにクリアして最終問題に挑戦せよ！',
   },
@@ -347,6 +383,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '特別棟',
     floor: '4F',
+    room: '5-8教室',
     description:
       '5年8組の扉を開ければ、そこはアリスの国。お洒落なティーカップに揺られ、不思議な旅へ出かけませんか。',
   },
@@ -356,6 +393,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '動物たちが暮らす街、ズートピア。そこで起こる、ひとつの事件。5-9で作る「ズートピア」、ぜひお楽しみください！',
   },
@@ -365,6 +403,7 @@ export const programs = [
     category: 'その他',
     building: '特別棟',
     floor: '4F',
+    room: '5-10教室',
     description:
       '魔法が解けたディズニーに忍び込んだあなた。静寂を破る悲鳴と迫りくるネズミ男。果たしてここから生きて出られるか？',
   },
@@ -374,6 +413,7 @@ export const programs = [
     category: '飲食店',
     building: '多目的コート',
     floor: '',
+    room: '模擬店エリア',
     description:
       '「ウマすぎてごめん！！」と思わず言ってしまうくらい美味しい焼きそば。ぜひ食べに来てください！',
   },
@@ -383,6 +423,7 @@ export const programs = [
     category: 'お化け屋敷',
     building: '本校舎',
     floor: '4F',
+    room: '5-12教室',
     description:
       'ライトだけを頼りに暗闇を進み、隠れたお化けを探しながら恐怖の世界をぜひお楽しみください。',
   },
@@ -392,6 +433,7 @@ export const programs = [
     category: '劇・ミュージカル',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       'ハリーポッターの劇をやります。ぜひお越しください！',
   },
@@ -401,6 +443,7 @@ export const programs = [
     category: '飲食店',
     building: '3号館',
     floor: '2F',
+    room: '5-14教室',
     description:
       'フレンチな雰囲気に、ハワイアンなアサイーボウルを組み合わせた、ハイブリッドな飲食コーナーです！',
   },
@@ -414,6 +457,7 @@ export const programs = [
     category: '部活・委員会',
     building: '特別棟',
     floor: '3F',
+    room: 'アニメーション部展示場所',
     description:
       '部員制作のMVの展示のみならず、イラストの展示や絵描きコーナー、部誌の配布もあるなんて！？是非来てね！',
   },
@@ -423,6 +467,7 @@ export const programs = [
     category: '部活・委員会',
     building: '特別棟',
     floor: '3F',
+    room: '美術室',
     description:
       '特別棟3階にて、部員たちの作品を展示しています。一人一人の個性が輝く美術室へぜひお越しください！',
   },
@@ -432,6 +477,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: '囲碁・将棋部展示場所',
     description:
       '友達同士もしくは囲碁将棋部部員と対局が楽しめます。ぜひ気軽に寄ってみてください！',
   },
@@ -441,6 +487,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '彼女いない歴＝年齢の男子高校生、翔。そんな彼のガラケーに恋文が！？恋文をめぐるドタバタコメディー♡',
   },
@@ -450,6 +497,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: '華道部展示場所',
     description:
       '華道部では、生け花の個人作や合作、「幸せを創る山手の風景」をテーマとしたポスターの展示を行っています。',
   },
@@ -459,6 +507,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       'まだ見ぬ世界を夢見る人魚姫アリエルが大冒険へ！世代を超えて愛される名作ミュージカル、いよいよ山手で開幕！',
   },
@@ -468,6 +517,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '4F',
+    room: '視聴覚室',
     description:
       'バンドごとの個性あふれる演奏をお届けします。お気に入りの一曲を見つけてください！視聴覚室で待ってます！',
   },
@@ -477,6 +527,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: '茶道部展示場所',
     description:
       '茶道部がお手前を披露します。お茶とお菓子で和のひとときをお楽しみください。皆様のお越しをお待ちしております！',
   },
@@ -486,6 +537,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: '写真部展示場所',
     description:
       '十人十色の感性が、特別な1枚を紡ぎ出す。部員たちのファインダー越しに見える世界をぜひご覧ください！',
   },
@@ -495,6 +547,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: '書道部展示場所',
     description:
       '今年も大型の共同作品に挑戦しました！部員一人一人の個性溢れる作品を是非見に来て下さい！色紙の抽選会もあります。',
   },
@@ -504,6 +557,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '皆様に楽しんでいただけるようなステージをお届けします！YGWO総勢110名の迫力のある演奏をお楽しみください！',
   },
@@ -513,6 +567,7 @@ export const programs = [
     category: '部活・委員会',
     building: '特別棟',
     floor: '2F',
+    room: '生物部展示場所',
     description:
       'こちらの展示では様々な生物の展示やグループごとの発表、標本づくりなど様々な企画を予定しています。',
   },
@@ -522,6 +577,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '中高生が一丸となって美しい箏の音を奏でます。普段触れることのない音楽に、この機会にぜひ包まれに来てください！',
   },
@@ -531,6 +587,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '90人のみんなの心を1つにして踊ります！！土曜日の朝イチで早いですが絶対楽しいので是非観に来てください！',
   },
@@ -540,6 +597,7 @@ export const programs = [
     category: '部活・委員会',
     building: '体育館',
     floor: '2F',
+    room: '体育館',
     description:
       '日々の努力の結晶を胸に最高の演技で皆さんの心を掴みます！私たちの全身全霊のチアを体感しに来てください！',
   },
@@ -549,6 +607,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: 'ねころ部展示場所',
     description:
       '「ねこがよろこぶ」部活、ねころ部です！文化祭は動物保護の団体と協力した全部寄付の物販や体験型の展示をします！',
   },
@@ -558,6 +617,7 @@ export const programs = [
     category: '部活・委員会',
     building: '図書館',
     floor: '',
+    room: '図書館',
     description:
       'あなたの好きな本を紹介したり、自由に小説の設定を考えたりしてみませんか？今ならなんと無料で部誌が手に入ります。',
   },
@@ -567,6 +627,7 @@ export const programs = [
     category: '部活・委員会',
     building: '本校舎',
     floor: '3F',
+    room: 'ボランティア部展示場所',
     description:
       'ボランティア団体のワークラブさかえさんが心を込めて作ってくださった手芸品、雑貨などを販売します！',
   },
@@ -576,6 +637,7 @@ export const programs = [
     category: '部活・委員会',
     building: '特別棟',
     floor: '2F',
+    room: '理工学部展示場所',
     description:
       '理工学部では日頃の実験・工作・プログラミング等の成果を展示しております。ここにしかない展示をお楽しみください。',
   },
@@ -589,6 +651,7 @@ export const programs = [
     category: '部活・委員会',
     building: '図書館',
     floor: '',
+    room: '図書館',
     description:
       '今年も古本市開催中！他にもブックトークやガチャガチャ、ビンゴなど楽しいイベントが盛りだくさん！ぜひ来てね！',
   },
@@ -598,6 +661,7 @@ export const programs = [
     category: '学年企画展示',
     building: '本校舎',
     floor: '1F',
+    room: '中1学年展示',
     description:
       '中学1年の課題「My Story」から、もっとも伝えたい一文を選び、全員がB4判の資料を作りました。',
   },
@@ -607,6 +671,7 @@ export const programs = [
     category: '学年企画展示',
     building: '本校舎',
     floor: '2F',
+    room: '中2学年展示',
     description:
       '中学2年は「日本の文化を英語で話せるようにしよう！」をテーマに発表します。60期生の力作を是非ご覧下さい。',
   },
@@ -616,6 +681,7 @@ export const programs = [
     category: '学年企画展示',
     building: '本校舎',
     floor: '1F',
+    room: '中3学年展示',
     description:
       'オーストラリア研修での交流の一環として制作した、私の好きな日本のモノ・コトを英語で紹介するポスターを展示します。',
   },
@@ -625,6 +691,7 @@ export const programs = [
   category: '部活・委員会',
   building: '本校舎',
   floor: '3F',
+  room: '生徒会展示場所',
   description:
     'ポスターコンテストや学校生活などについて、山手生に聞いたアンケート結果を公開しています。',
   },
@@ -638,6 +705,7 @@ export const programs = [
   category: 'その他',
   building: '港南台門',
   floor: '',
+  room: '販売・バザーエリア',
   description: 'バザー',
   },
   {
@@ -646,6 +714,7 @@ export const programs = [
   category: '飲食店',
   building: '多目的コート',
   floor: '',
+  room: '模擬店エリア',
   description: 'フランクフルト',
   },
   {
@@ -654,6 +723,7 @@ export const programs = [
   category: '飲食店',
   building: '多目的コート',
   floor: '',
+  room: '模擬店エリア',
   description: '水餃子',
   },
   {
@@ -662,6 +732,7 @@ export const programs = [
   category: '飲食店',
   building: '多目的コート',
   floor: '',
+  room: '模擬店エリア',
   description: 'トルティーヤドッグ',
   },
 
@@ -674,6 +745,7 @@ export const programs = [
   category: 'その他',
   building: 'カフェテリア',
   floor: '',
+  room: 'カフェテリア',
   description:
     'この夏、山手学院にお迎えした北米の高校生たちは、山手生の家庭で2週間ホームステイを体験しました。こちらでは山手父母の会主催の「カルチャーデイ」での交流の様子、横浜遠足、東京ディズニーシー遠足やホームステイでの様子などを写真展示とビデオ上映でご紹介しています。',
   },
@@ -683,6 +755,7 @@ export const programs = [
     category: 'その他',
     building: '3号館',
     floor: '1F',
+    room: 'グッズ販売エリア',
     description: '',
   },
   {
@@ -691,6 +764,7 @@ export const programs = [
     category: '縁日・遊び',
     building: '港南台門',
     floor: '',
+    room: '縁日・ゲームエリア',
     description: '',
   },
   {
@@ -699,6 +773,7 @@ export const programs = [
     category: '飲食店',
     building: '多目的コート',
     floor: '',
+    room: '模擬店エリア',
     description: '',
   },
 
@@ -711,6 +786,7 @@ export const programs = [
     category: 'その他',
     building: '本校舎',
     floor: '1F',
+    room: '入試資料コーナー',
     description: '入試に関する資料を配布します。',
   },
 ];

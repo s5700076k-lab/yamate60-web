@@ -76,108 +76,101 @@ import Navigation from '../components/Navigation.astro';
   <p class="section-label">INFORMATION</p>
   <h2>開催情報</h2>
 
-  <div class="info-grid">
-    <div class="info-item">
-      <span>DATE</span>
-      <h3>開催日時</h3>
-      <p>
-     2026.10.03 SAT　9:00 — 15:35<br />
-     2026.10.04 SUN　9:00 — 15:15
-     </p>
-    </div>
+ <div class="info-grid">
 
-   <div class="info-item payment-important">
-  <span>PAYMENT</span>
-  <h3>決済方法</h3>
-
-  <p>
-    生徒による飲食企画：交通系ICカードのみ<br />
-    その他の飲食展示：現金
-  </p>
-
-  <p class="payment-note">
-    ※Suica・PASMO等の交通系ICカードをご利用いただけます。<br />
-    ※学内に交通系ICカードのチャージ機器はございません。<br />
-    ご来場前に残高をご確認のうえ、十分にチャージしてお越しください。
-  </p>
-</div>
-
-    <div class="info-item">
-      <span>SHOES</span>
-      <h3>土足での入場</h3>
-      <p>土足のままご入場いただけます</p>
-    </div>
-
-    <div class="info-item">
-      <span>RESERVATION</span>
-      <h3>事前予約</h3>
-      <p>ご来場に事前予約は必要ありません</p>
-    </div>
-  </div>
-</section>
-<section class="coming-soon-section" id="coming-soon">
-  <div class="coming-soon-heading">
-    <p class="section-label">NEXT UPDATE</p>
-    <h2>COMING SOON</h2>
-    <p class="coming-soon-lead">
-      山手祭をもっと楽しむための情報を、順次公開していきます。
+  <!-- 開催日時 -->
+  <div class="info-item">
+    <span>DATE</span>
+    <h3>開催日時</h3>
+    <p class="festival-date">
+      2026.10.03 SAT　9:00 — 15:35<br />
+      2026.10.04 SUN　9:00 — 15:15
     </p>
   </div>
 
-  <div class="coming-soon-grid">
-    <div class="coming-soon-item">
-      <span>01</span>
-      <div>
-        <h3>PROGRAMS</h3>
-        <p>展示一覧・詳細</p>
-      </div>
-    </div>
+  <!-- 決済方法 -->
+  <div class="info-item payment-important">
+    <span>PAYMENT</span>
+    <h3>決済方法</h3>
 
-    <div class="coming-soon-item">
-      <span>02</span>
-      <div>
-        <h3>MAP</h3>
-        <p>校内マップ</p>
-      </div>
-    </div>
+    <p>
+      生徒による飲食企画：交通系ICカードのみ<br />
+      その他の飲食展示：現金
+    </p>
 
-    <div class="coming-soon-item">
-      <span>03</span>
-      <div>
-        <h3>TIMETABLE</h3>
-        <p>公演・ライブ等のタイムテーブル</p>
-      </div>
-    </div>
-
-    <div class="coming-soon-item">
-      <span>04</span>
-      <div>
-        <h3>PERFORMANCE</h3>
-        <p>各展示の公演時間</p>
-      </div>
-    </div>
-
-    <div class="coming-soon-item">
-      <span>05</span>
-      <div>
-        <h3>CONGESTION</h3>
-        <p>展示混雑状況</p>
-      </div>
-    </div>
-
-
-    <div class="coming-soon-item">
-      <span>06</span>
-      <div>
-        <h3>DIGITAL PAMPHLET</h3>
-        <p>デジタルパンフレット</p>
-      </div>
-    </div>
+    <p class="payment-note">
+      ※Suica・PASMO等の交通系ICカードをご利用いただけます。<br />
+      ※学内に交通系ICカードのチャージ機器はございません。<br />
+      ご来場前に残高をご確認のうえ、十分にチャージしてお越しください。
+    </p>
   </div>
 
-  <p class="coming-soon-note">
-    CONTENTS WILL BE RELEASED SEQUENTIALLY.
-  </p>
+  <!-- 土足 -->
+  <div class="info-item">
+    <span>SHOES</span>
+    <h3>土足での入場</h3>
+    <p>土足のままご入場いただけます</p>
+  </div>
+
+  <!-- 事前予約 -->
+  <div class="info-item">
+    <span>RESERVATION</span>
+    <h3>事前予約</h3>
+    <p>ご来場に事前予約は必要ありません</p>
+  </div>
+
+  <!-- 撮影について -->
+  <div class="info-item performance-notice">
+    <span>PHOTOGRAPHY</span>
+    <h3>公演撮影について</h3>
+    <p>
+      ダンス部・チアリーダー部の公演は<br />
+      <strong>撮影禁止です。</strong>
+    </p>
+  </div>
+
+</div>
+</section>
+ <section class="page-links-section">
+  <div class="page-links-heading">
+    <span>EXPLORE</span>
+    <h2>山手祭をもっと楽しむ</h2>
+    <p>各ページから、山手祭の詳しい情報をご覧いただけます。</p>
+  </div>
+
+ <div class="page-links-grid">
+
+  <a href="/stella" class="page-link-card">
+    <span>THEME</span>
+    <h3>STELLA</h3>
+    <p>60周年を迎える山手祭のテーマに込められた想いをご紹介します。</p>
+  </a>
+
+  <a href="/programs" class="page-link-card">
+    <span>EXHIBITIONS</span>
+    <h3>PROGRAMS</h3>
+    <p>クラス・部活動などの展示や企画をご覧いただけます。</p>
+  </a>
+
+  <a href="/map" class="page-link-card">
+    <span>FLOOR GUIDE</span>
+    <h3>MAP</h3>
+    <p>各校舎・フロアのマップをご確認いただけます。</p>
+  </a>
+
+  <a href="/timetable" class="page-link-card">
+    <span>SCHEDULE</span>
+    <h3>TIMETABLE</h3>
+    <p>体育館・軽音楽部などの公演スケジュールをご確認いただけます。</p>
+  </a>
+
+  <a href="/information" class="page-link-card">
+    <span>VISITOR GUIDE</span>
+    <h3>INFORMATION</h3>
+    <p>開催情報・お支払い方法・注意事項などをご案内します。</p>
+  </a>
+
+</div>
 </section>
 </Layout>
 
@@ -671,7 +664,9 @@ import Navigation from '../components/Navigation.astro';
   .info-section {
     padding: 56px 18px;
   }
-
+.performance-notice {
+  grid-column: auto;
+}
   .info-grid {
     grid-template-columns: 1fr;
   }
@@ -685,6 +680,47 @@ import Navigation from '../components/Navigation.astro';
   margin-top: 14px !important;
   font-weight: 700;
   opacity: 1 !important;
+}
+.festival-date {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.9 !important;
+  letter-spacing: 0.02em;
+  opacity: 1 !important;
+}
+.coming-soon-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.coming-soon-link:visited {
+  color: inherit;
+}
+
+.coming-soon-link:hover {
+  color: inherit;
+}
+.coming-soon-link {
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+.coming-soon-link:hover {
+  background: rgba(255, 255, 255, 0.025);
+  padding-left: 12px;
+}
+.performance-notice {
+  grid-column: 1 / -1;
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.performance-notice strong {
+  font-weight: 700;
+  color: #fff;
 }
 .top-nav {
   position: fixed;
@@ -1004,7 +1040,204 @@ import Navigation from '../components/Navigation.astro';
     letter-spacing: 0.12em;
   }
 }
+.bottom-menu {
+  width: 100%;
+  margin: 0;
+  padding: 70px 24px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+
+  background: #05060a;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+}
+
+.bottom-menu a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  padding: 14px 18px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.bottom-menu a:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px 0 0 999px;
+}
+
+.bottom-menu a:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0 999px 999px 0;
+}
+
+.bottom-menu a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 700px) {
+  .bottom-menu {
+    margin: 60px auto 40px;
+    gap: 8px;
+  }
+
+  .bottom-menu a {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    padding: 11px 14px;
+    font-size: 0.65rem;
+  }
+
+  .bottom-menu a:first-child,
+  .bottom-menu a:last-child {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+  }
+}
+.page-links-section {
+  max-width: none;
+  margin: 0;
+  padding: 90px max(32px, calc((100% - 1100px) / 2)) 110px;
+
+  color: #fff;
+  background: #05060a;
+}
+
+.page-links-heading {
+  margin-bottom: 42px;
+}
+
+.page-links-heading > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  opacity: 0.45;
+}
+
+.page-links-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+}
+
+.page-links-heading p {
+  margin: 16px 0 0;
+  line-height: 1.8;
+  opacity: 0.6;
+}
+
+.page-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.page-link-card {
+  min-height: 210px;
+  padding: 34px 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #fff;
+  text-decoration: none;
+
+  background: rgba(255, 255, 255, 0.025);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.page-link-card > span {
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  opacity: 0.45;
+}
+
+.page-link-card h3 {
+  margin: 20px 0 0;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 500;
+}
+
+.page-link-card p {
+  max-width: 480px;
+  margin: 14px 0 0;
+  line-height: 1.8;
+  opacity: 0.62;
+}
+
+.page-link-card::after {
+  content: "VIEW PAGE →";
+
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 10px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.8);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.page-link-card:hover::after {
+  background: #fff;
+  border-color: #fff;
+  color: #05060a;
+}
+
+.page-link-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.page-link-card:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 700px) {
+  .page-links-section {
+    padding: 70px 24px 80px;
+  }
+
+  .page-links-heading {
+    margin-bottom: 32px;
+  }
+
+  .page-links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-link-card {
+    min-height: 185px;
+    padding: 28px 24px;
+  }
+
+  .page-link-card:last-child {
+    grid-column: auto;
+  }
+}
 </style>
 <script>
 
