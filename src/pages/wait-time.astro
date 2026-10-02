@@ -1,0 +1,338 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import { programs } from '../data/programs';
+
+const classPrograms = programs.filter((program) =>
+  /^\d+年\d+組$/.test(program.group)
+);
+---
+
+<Layout>
+  <Navigation />
+
+  <main class="wait-page">
+    <section class="wait-hero">
+      <p class="eyebrow">YAMATE FESTIVAL 2026</p>
+      <h1>WAIT TIME</h1>
+      <p class="lead">クラス企画の待ち時間</p>
+
+      <div class="live-note">
+        <span class="live-dot"></span>
+        <span>REAL-TIME INFORMATION</span>
+      </div>
+    </section>
+
+    <section class="wait-section">
+      <div class="table-head">
+        <span>CLASS</span>
+        <span>PROGRAM</span>
+        <span>PLACE</span>
+        <span>WAIT TIME</span>
+      </div>
+
+      <div class="program-list">
+        {classPrograms.map((program) => (
+          <div
+            class="program-row"
+            data-wait-row
+            data-group={program.group}
+            data-gym-play={['4年7組', '5年3組', '5年9組', '5年13組'].includes(program.group) ? 'true' : 'false'}
+          >
+            <div class="class-name">
+              {program.group}
+            </div>
+
+            <div class="program-name">
+              {program.title}
+            </div>
+
+            <div class="program-place">
+              {[program.building, program.floor]
+                .filter(Boolean)
+                .join(' ')}
+            </div>
+
+            <div class="wait-status">
+              <span class="wait-value" data-wait-value>
+                --
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .wait-page {
+    min-height: 100vh;
+    padding: 150px 24px 100px;
+    color: #fff;
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(55, 82, 145, 0.18),
+        transparent 38%
+      ),
+      #050711;
+  }
+
+  .wait-hero {
+    width: min(1100px, 100%);
+    margin: 0 auto 64px;
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #789bf0;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .wait-hero h1 {
+    margin: 0;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    margin: 18px 0 0;
+    color: #a9b2c7;
+  }
+
+  .live-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    color: #849ee0;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #86a8ff;
+    box-shadow: 0 0 12px rgba(134, 168, 255, 0.8);
+  }
+
+  .wait-section {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+  }
+
+  .table-head,
+  .program-row {
+    display: grid;
+    grid-template-columns:
+      minmax(90px, 0.8fr)
+      minmax(240px, 2.4fr)
+      minmax(140px, 1.2fr)
+      minmax(120px, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .table-head {
+    padding: 0 18px 12px;
+    color: #657086;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .program-row {
+    min-height: 76px;
+    padding: 14px 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .program-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .class-name {
+    color: #8eabef;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .program-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .program-place {
+    color: #8b95aa;
+    font-size: 0.75rem;
+  }
+
+  .wait-status {
+    text-align: right;
+  }
+
+  .wait-value {
+    color: #b7c9f5;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  @media (hover: hover) {
+    .program-row:hover {
+      border-color: rgba(120, 156, 240, 0.22);
+      background: rgba(82, 112, 180, 0.06);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .wait-page {
+      padding: 120px 16px 80px;
+    }
+
+    .wait-hero {
+      margin-bottom: 42px;
+    }
+
+    .table-head {
+      display: none;
+    }
+
+    .program-row {
+      grid-template-columns: 68px 1fr auto;
+      gap: 8px 12px;
+      min-height: 82px;
+      padding: 14px 8px;
+    }
+
+    .class-name {
+      grid-row: 1 / 3;
+    }
+
+    .program-name {
+      grid-column: 2;
+    }
+
+    .program-place {
+      grid-column: 2;
+    }
+
+    .wait-status {
+      grid-column: 3;
+      grid-row: 1 / 3;
+    }
+  }
+</style>
+<script>
+const gymPlays = {
+  '2026-10-03': {
+    '4年7組': ['12:50'],
+    '5年3組': ['10:10'],
+    '5年9組': ['10:50'],
+    '5年13組': ['12:10'],
+  },
+  '2026-10-04': {
+    '4年7組': ['10:00'],
+    '5年3組': ['13:05'],
+    '5年9組': ['12:25'],
+    '5年13組': ['10:40'],
+  },
+};
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycbzRXdv-WmAjW2VufrLzYFD8orjQa6AQM94IFcNb_MtDNpFlfja176X7EBZcHc73GWLL/exec';
+
+  type CongestionData = {
+    className: string;
+    waiting: string;
+    time: string;
+    status: string;
+  };
+  async function updateWaitTimes() {
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data: Record<string, CongestionData> =
+        await response.json();
+　　　　
+      const rows =
+        document.querySelectorAll<HTMLElement>('[data-wait-row]');
+
+      rows.forEach((row) => {
+        const group = row.dataset.group ?? '';
+        const value =
+          row.querySelector<HTMLElement>('[data-wait-value]');
+
+        if (!value) return;
+
+        if (row.dataset.gymPlay === 'true') {
+  const now = new Date();
+
+  const date =
+    `${now.getFullYear()}-` +
+    `${String(now.getMonth() + 1).padStart(2, '0')}-` +
+    `${String(now.getDate()).padStart(2, '0')}`;
+
+  const todayPlays =
+    gymPlays[date as keyof typeof gymPlays];
+
+  const times =
+    todayPlays?.[group as keyof typeof todayPlays] ?? [];
+
+  const nowMinutes =
+    now.getHours() * 60 + now.getMinutes();
+
+  const nextTime = times.find((time) => {
+    const [hour, minute] = time.split(':').map(Number);
+    return hour * 60 + minute > nowMinutes;
+  });
+
+  if (!todayPlays) {
+    value.textContent = '公演時間を確認';
+  } else if (nextTime) {
+    value.textContent = `NEXT ${nextTime}`;
+  } else {
+    value.textContent = '本日の公演終了';
+  }
+
+  return;
+}
+
+        const match = group.match(/^(\d+)年(\d+)組$/);
+
+        if (!match) {
+          value.textContent = '--';
+          return;
+        }
+
+        const classId = `${match[1]}-${match[2]}`;
+        const info = data[classId];
+
+        if (!info) {
+          value.textContent = '情報なし';
+          return;
+        }
+
+        value.textContent = `${info.waiting}組待ち`;
+      });
+    } catch (error) {
+      console.error('待ち時間の取得に失敗:', error);
+    }
+  }
+
+  updateWaitTimes();
+
+  setInterval(updateWaitTimes, 30000);
+</script>

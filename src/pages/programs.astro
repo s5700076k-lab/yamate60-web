@@ -309,6 +309,16 @@ if (congestionId && detailWait) {
   });
 });
 
+const openGroup =
+  new URLSearchParams(window.location.search).get('open');
+
+if (openGroup) {
+  const targetButton = Array.from(detailButtons).find(
+    (button) => button.dataset.group === openGroup
+  );
+
+  targetButton?.click();
+}
 
 detailClose?.addEventListener('click', closeDetail);
 

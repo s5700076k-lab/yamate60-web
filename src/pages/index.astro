@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
@@ -131,6 +132,55 @@ import Navigation from '../components/Navigation.astro';
 
 </div>
 </section>
+<section class="messages-section">
+  <div class="messages-heading">
+    <span>MESSAGE</span>
+    <h2>山手祭を迎えて</h2>
+  </div>
+
+  <div class="messages-grid">
+    <article class="message-card">
+      <div class="message-role">山手祭実行委員長</div>
+
+      <p>
+        みなさんこんにちは！ この度は山手祭特設サイトをご覧いただきありがとうございます。
+        大変ありがたいことに、山手祭は今年で60周年を迎え、各団体よりいっそう力を入れて展示の準備をしてきました。
+        私たち生徒会執行部でも、60周年を記念した新たな企画を進めています。
+        ぜひ、山手学院生徒一同で築き上げた、60光年の閃光が光り輝く瞬間をお楽しみください！
+      </p>
+    </article>
+
+    <article class="message-card">
+      <div class="message-role">第57期生徒会執行部会長</div>
+      
+
+      <p>
+        みなさんこんにちは！ 第57期生徒会執行部会長の田中健翔です。
+        今年、山手学院は創立60周年を迎えます。大きな制限もなく無事この日を迎えられたことをとても幸せに思います。
+        今年のテーマは、「STELLA ～60光年の閃光～」です！60年間、先輩方の工夫や挑戦によって進化してきた山手祭。
+        生徒会を代表して、60年の歴史を重ね、今回の山手祭が「STELLA」として光り輝くことで、
+        「今年が一番良かった」と思ってもらえることを願っています！
+        それでは、この2日間、思いっきり楽しんでください！！
+      </p>
+    </article>
+  </div>
+</section>
+<section class="pamphlet-section">
+  <a
+    href="/pamphlet2026.pdf"
+    class="pamphlet-card"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div class="pamphlet-text">
+      <span>DIGITAL PAMPHLET</span>
+      <h2>山手祭デジタルパンフレット</h2>
+      <p>企画紹介や校内情報をまとめたパンフレットをご覧いただけます。</p>
+    </div>
+
+    <span class="pamphlet-link">VIEW PAMPHLET →</span>
+  </a>
+</section>
  <section class="page-links-section">
   <div class="page-links-heading">
     <span>EXPLORE</span>
@@ -172,6 +222,7 @@ import Navigation from '../components/Navigation.astro';
 
 </div>
 </section>
+<Footer />
 </Layout>
 
 <style>
@@ -1238,6 +1289,309 @@ import Navigation from '../components/Navigation.astro';
     grid-column: auto;
   }
 }
+/* =========================
+   DIGITAL PAMPHLET
+========================= */
+
+.pamphlet-section {
+  width: 100%;
+  margin: 0;
+  padding: 90px max(24px, calc((100% - 1180px) / 2));
+  box-sizing: border-box;
+  background: #050711;
+}
+
+.pamphlet-card {
+  position: relative;
+  display: block;
+  text-align: center;
+  padding: 46px 50px;
+  overflow: hidden;
+  border: 1px solid rgba(126, 159, 235, 0.24);
+  border-radius: 24px;
+  color: #fff;
+  text-decoration: none;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(91, 135, 235, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(19, 29, 53, 0.94),
+      rgba(8, 12, 25, 0.96)
+    );
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.pamphlet-text > span {
+  display: block;
+  margin-bottom: 15px;
+  color: #789bf0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.pamphlet-text h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.3;
+}
+
+.pamphlet-text p {
+  margin: 14px 0 0;
+  color: #929db4;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.pamphlet-link {
+  flex-shrink: 0;
+  color: #87a7f3;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+@media (hover: hover) {
+  .pamphlet-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(126, 159, 235, 0.5);
+    box-shadow:
+      0 22px 70px rgba(0, 0, 0, 0.3),
+      0 0 35px rgba(91, 135, 235, 0.1);
+  }
+}
+
+@media (max-width: 700px) {
+  .pamphlet-section {
+    width: calc(100% - 32px);
+    margin: 60px auto;
+  }
+
+  .pamphlet-card {
+    display: block;
+    padding: 30px 24px;
+    border-radius: 18px;
+  }
+
+  .pamphlet-link {
+    display: block;
+    margin-top: 28px;
+  }
+}
+.pamphlet-card {
+  display: block;
+  text-align: center;
+}
+
+.pamphlet-text {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pamphlet-link {
+  display: block;
+  width: fit-content;
+  margin: 24px auto 0;
+  text-align: center;
+}
+/* =========================
+   MESSAGE
+========================= */
+
+.messages-section {
+  width: min(1180px, calc(100% - 48px));
+  margin: 110px auto;
+}
+
+.messages-heading {
+  margin-bottom: 38px;
+  text-align: center;
+}
+
+.messages-heading > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #789bf0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.messages-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  letter-spacing: 0.04em;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.message-card {
+  position: relative;
+  padding: 34px 34px 38px;
+  overflow: hidden;
+  border: 1px solid rgba(126, 159, 235, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(91, 135, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(19, 29, 53, 0.88),
+      rgba(8, 12, 25, 0.94)
+    );
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.18);
+}
+
+.message-role {
+  margin-bottom: 8px;
+  color: #86a5ef;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.message-card h3 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.message-card p {
+  margin: 0;
+  color: #c1c8d7;
+  font-size: 0.86rem;
+  line-height: 2;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 800px) {
+  .messages-section {
+    width: calc(100% - 32px);
+    margin: 75px auto;
+  }
+
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .message-card {
+    padding: 28px 24px 30px;
+  }
+
+  .message-card p {
+    font-size: 0.82rem;
+    line-height: 1.9;
+  }
+}
+/* =========================
+   MESSAGE
+========================= */
+
+.messages-section {
+  width: 100%;
+  margin: 0;
+  padding: 100px max(24px, calc((100% - 1180px) / 2));
+  box-sizing: border-box;
+  background: #050711;
+  color: #fff;
+}
+
+.messages-heading {
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.messages-heading > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #789bf0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.messages-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.message-card {
+  padding: 36px;
+  border: 1px solid rgba(126, 159, 235, 0.2);
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(91, 135, 235, 0.13),
+      transparent 35%
+    ),
+    rgba(13, 19, 35, 0.82);
+}
+
+.message-role {
+  margin-bottom: 8px;
+  color: #789bf0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.message-card h3 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.message-card p {
+  margin: 0;
+  color: #b5bdcc;
+  font-size: 0.86rem;
+  line-height: 2;
+}
+
+@media (max-width: 760px) {
+  .messages-section {
+    padding: 70px 16px;
+  }
+
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .message-card {
+    padding: 28px 24px;
+  }
+}
+
+
+
 </style>
 <script>
 

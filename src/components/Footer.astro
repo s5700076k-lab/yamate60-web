@@ -1,0 +1,460 @@
+<footer class="site-footer">
+  <div class="footer-glow"></div>
+
+  <div class="footer-stars" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="footer-inner">
+
+    <!-- STELLA -->
+    <div class="footer-brand">
+      <p class="footer-label">YAMATE FESTIVAL 2026</p>
+
+      <h2 class="footer-title">
+        STELLA
+      </h2>
+
+      <p class="footer-theme">
+        60光年の閃光
+      </p>
+
+      <div class="footer-line"></div>
+
+      <p class="footer-message">
+        60年の軌跡を、次の光へ。
+      </p>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="/">HOME</a>
+      <a href="/information">INFORMATION</a>
+      <a href="/programs">PROGRAMS</a>
+      <a href="/map">MAP</a>
+      <a href="/timetable">TIMETABLE</a>
+      <a href="/news">NEWS</a>
+    </nav>
+
+    <!-- SCHOOL -->
+    <div class="footer-school">
+      <p class="school-name">
+        山手学院中学校・高等学校
+      </p>
+
+      <p class="festival-name">
+        第60回 山手祭
+      </p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>© 2026 YAMATE FESTIVAL. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    color: #ffffff;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(78, 122, 255, 0.16),
+        transparent 38%
+      ),
+      linear-gradient(
+        180deg,
+        #071126 0%,
+        #030817 55%,
+        #01040c 100%
+      );
+  }
+
+
+  /* 上部の光 */
+  .footer-glow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+
+    width: 700px;
+    height: 350px;
+
+    transform: translateX(-50%);
+
+    background:
+      radial-gradient(
+        ellipse,
+        rgba(93, 137, 255, 0.18),
+        transparent 68%
+      );
+
+    pointer-events: none;
+  }
+
+
+  /* 星 */
+  .footer-stars {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+  }
+
+  .footer-stars span {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 0 5px rgba(255,255,255,.9),
+      0 0 12px rgba(120,160,255,.7);
+
+    animation: footerTwinkle 3s ease-in-out infinite;
+  }
+
+  .footer-stars span:nth-child(1) {
+    top: 20%;
+    left: 8%;
+  }
+
+  .footer-stars span:nth-child(2) {
+    top: 38%;
+    left: 22%;
+
+    animation-delay: .8s;
+  }
+
+  .footer-stars span:nth-child(3) {
+    top: 15%;
+    left: 76%;
+
+    animation-delay: 1.5s;
+  }
+
+  .footer-stars span:nth-child(4) {
+    top: 56%;
+    left: 90%;
+
+    animation-delay: 2.1s;
+  }
+
+  .footer-stars span:nth-child(5) {
+    top: 72%;
+    left: 13%;
+
+    animation-delay: 1.2s;
+  }
+
+  .footer-stars span:nth-child(6) {
+    top: 67%;
+    left: 70%;
+
+    animation-delay: 2.6s;
+  }
+
+
+  @keyframes footerTwinkle {
+    0%,
+    100% {
+      opacity: .25;
+      transform: scale(.7);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.4);
+    }
+  }
+
+
+  /* メイン */
+  .footer-inner {
+    position: relative;
+    z-index: 2;
+
+    width: min(1100px, calc(100% - 48px));
+
+    margin: 0 auto;
+
+    padding:
+      clamp(90px, 12vw, 150px)
+      0
+      70px;
+  }
+
+
+  /* ブランド */
+  .footer-brand {
+    text-align: center;
+  }
+
+  .footer-label {
+    margin: 0 0 16px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: .35em;
+
+    color: rgba(255,255,255,.48);
+  }
+
+  .footer-title {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size:
+      clamp(58px, 10vw, 110px);
+
+    font-weight: 400;
+
+    line-height: .9;
+
+    letter-spacing: .14em;
+
+    text-indent: .14em;
+
+    color: #ffffff;
+
+    text-shadow:
+      0 0 30px rgba(109,145,255,.18);
+  }
+
+  .footer-theme {
+    margin: 18px 0 0;
+
+    font-size: 13px;
+
+    letter-spacing: .5em;
+
+    text-indent: .5em;
+
+    color: rgba(255,255,255,.65);
+  }
+
+  .footer-line {
+    width: 42px;
+    height: 1px;
+
+    margin: 34px auto;
+
+    background:
+      rgba(255,255,255,.35);
+  }
+
+  .footer-message {
+    margin: 0;
+
+    font-family:
+      "Yu Mincho",
+      "Hiragino Mincho ProN",
+      serif;
+
+    font-size:
+      clamp(14px, 2vw, 17px);
+
+    letter-spacing: .18em;
+
+    color: rgba(255,255,255,.68);
+  }
+
+
+  /* ナビ */
+  .footer-nav {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px 34px;
+
+    margin-top: 80px;
+  }
+
+  .footer-nav a {
+    position: relative;
+
+    padding: 6px 0;
+
+    color: rgba(255,255,255,.6);
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: .18em;
+
+    transition:
+      color .3s ease;
+  }
+
+  .footer-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255,255,255,.8);
+
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition:
+      transform .35s ease;
+  }
+
+  .footer-nav a:hover {
+    color: #ffffff;
+  }
+
+  .footer-nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+
+  /* 学校 */
+  .footer-school {
+    margin-top: 70px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,.45);
+  }
+
+  .school-name {
+    margin: 0;
+
+    font-size: 12px;
+
+    letter-spacing: .12em;
+  }
+
+  .festival-name {
+    margin: 8px 0 0;
+
+    font-size: 11px;
+
+    letter-spacing: .14em;
+  }
+
+
+  /* 最下部 */
+  .footer-bottom {
+    position: relative;
+    z-index: 2;
+
+    border-top:
+      1px solid rgba(255,255,255,.08);
+
+    padding: 22px 24px;
+
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+
+    font-size: 9px;
+
+    letter-spacing: .16em;
+
+    color: rgba(255,255,255,.3);
+  }
+
+
+  /* スマホ */
+  @media (max-width: 600px) {
+
+    .footer-inner {
+      width: min(
+        100% - 32px,
+        1100px
+      );
+
+      padding-top: 80px;
+      padding-bottom: 55px;
+    }
+
+    .footer-title {
+      font-size: clamp(
+        48px,
+        17vw,
+        72px
+      );
+
+      letter-spacing: .08em;
+
+      text-indent: .08em;
+    }
+
+    .footer-theme {
+      font-size: 10px;
+
+      letter-spacing: .35em;
+
+      text-indent: .35em;
+    }
+
+    .footer-message {
+      font-size: 13px;
+
+      letter-spacing: .12em;
+    }
+
+    .footer-nav {
+      gap: 16px 24px;
+
+      margin-top: 60px;
+    }
+
+    .footer-nav a {
+      font-size: 10px;
+    }
+
+    .footer-school {
+      margin-top: 55px;
+    }
+  }
+
+
+  /* 動きを減らす設定 */
+  @media (prefers-reduced-motion: reduce) {
+
+    .footer-stars span {
+      animation: none;
+    }
+
+    .footer-nav a,
+    .footer-nav a::after {
+      transition: none;
+    }
+  }
+</style>

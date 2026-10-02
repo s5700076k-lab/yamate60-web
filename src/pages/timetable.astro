@@ -1,7 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+const getProgramGroup = (item: {
+  name: string;
+  venue: string;
+}) => {
+  const classMatch = item.name.match(/^(\d+)-(\d+)$/);
 
+  if (classMatch) {
+    return `${classMatch[1]}年${classMatch[2]}組`;
+  }
+
+  if (item.venue === '軽音ライブ') {
+    return '軽音楽部';
+  }
+
+  return item.name;
+};
 const schedules = {
   day1: [
     // 体育館
@@ -73,7 +88,7 @@ const schedules = {
     {
       start: '10:35',
       end: '10:50',
-      name: '日々幸そ',
+      name: '日々幸乞',
       venue: '軽音ライブ',
       place: '本校舎 4F 視聴覚室',
     },
@@ -274,118 +289,161 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
     </section>
 
     <section class="timetable-section">
-      <div class="date-tabs">
-        <button class="date-tab active" data-day="day1">
-          <span class="date-number">10.03</span>
-          <span class="date-day">SAT</span>
-        </button>
-
-        <button class="date-tab" data-day="day2">
-          <span class="date-number">10.04</span>
-          <span class="date-day">SUN</span>
-        </button>
-      </div>
 
       <div class="venue-tabs">
-        <button class="venue-tab active" data-venue="all">ALL</button>
-        <button class="venue-tab" data-venue="体育館">体育館</button>
+        <button class="venue-tab active" data-venue="体育館">体育館</button>
         <button class="venue-tab" data-venue="軽音ライブ">軽音ライブ</button>
       </div>
+<div class="timeline-scroll" data-timeline-scroll>
+  <div class="timeline-grid">
+    <div class="timeline-corner">
+      <span>TIME</span>
+    </div>
 
-      <div class="schedule-wrap">
-        <div class="schedule-list active" data-schedule="day1">
-          {
-            schedules.day1.map((item) => (
-              <article
-               class="schedule-card"
-               data-card-venue={item.venue}
-               data-start={item.start}
-               data-end={item.end}
-               data-date="2026-10-03"
->
-                <div class="time">
-                  <span class="start">{item.start}</span>
-                  <span class="dash">—</span>
-                  <span class="end">{item.end}</span>
-                </div>
-
-                 <div class="status-area">
-                   <span class="status-badge"></span>
-                </div>
-
-                <div class="event">
-                  <span
-                    class:list={[
-                      'venue-label',
-                      item.venue === '体育館'
-                        ? 'gym'
-                        : 'live',
-                    ]}
-                  >
-                    {item.venue}
-                  </span>
-
-                 　<h2>{item.name}</h2>
-
-　　　　　　　　　　{item.name === 'ダンス部' && (
-  　　　　　　　　　<span class="photo-ban">撮影禁止</span>
-　　　　　　　　　　　)}
-
-　　　　　　　　　　<p>{item.place}</p>
-
-                </div>
-              </article>
-            ))
-          }
-        </div>
-
-        <div class="schedule-list" data-schedule="day2">
-          {
-            schedules.day2.map((item) => (
-              <article
-               class="schedule-card"
-               data-card-venue={item.venue}
-               data-start={item.start}
-               data-end={item.end}
-               data-date="2026-10-04"
->
-                <div class="time">
-                  <span class="start">{item.start}</span>
-                  <span class="dash">—</span>
-                  <span class="end">{item.end}</span>
-                </div>
-
-                <div class="status-area">
-                  <span class="status-badge"></span>
-                </div>
-
-                <div class="event">
-                  <span
-                    class:list={[
-                      'venue-label',
-                      item.venue === '体育館'
-                        ? 'gym'
-                        : 'live',
-                    ]}
-                  >
-                    {item.venue}
-                  </span>
-
-                 <h2>{item.name}</h2>
-
-{item.name === 'チアリーダー部' && (
-  <span class="photo-ban">撮影禁止</span>
-)}
-
-<p>{item.place}</p>
-                </div>
-
-                
-              </article>
-            ))
-          }
-        </div>
+    <div class="day-header" data-date="2026-10-03">
+      <div class="day-header-main">
+        <span class="day-number">10.03</span>
+        <span class="day-name">SAT</span>
       </div>
+
+      <div class="today-info" data-today-info>
+        <span class="today-label">TODAY</span>
+        <span class="current-time" data-current-time></span>
+      </div>
+    </div>
+
+    <div class="day-header" data-date="2026-10-04">
+      <div class="day-header-main">
+        <span class="day-number">10.04</span>
+        <span class="day-name">SUN</span>
+      </div>
+
+      <div class="today-info" data-today-info>
+        <span class="today-label">TODAY</span>
+        <span class="current-time" data-current-time></span>
+      </div>
+    </div>
+  </div>
+
+<div class="timeline-body" data-timeline-body>
+  <div class="time-axis" aria-hidden="true">
+    {['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'].map((time, index) => (
+      <div
+        class="hour-label"
+        style={`top: ${index * 150}px`}
+      >
+        {time}
+      </div>
+    ))}
+  </div>
+
+  <div class="day-column" data-day-column="day1">
+  <div
+  class="current-time-line"
+  data-current-line
+  data-date="2026-10-03"
+  aria-hidden="true"
+>
+  <span class="current-time-dot"></span>
+</div>
+    {schedules.day1.map((item) => (
+      <a
+  class="timeline-card"
+  href={`/programs?open=${encodeURIComponent(getProgramGroup(item))}`}
+  data-card-venue={item.venue}
+  data-start={item.start}
+  data-end={item.end}
+  data-date="2026-10-03"
+  style={`--start: ${
+    ((Number(item.start.split(':')[0]) * 60 +
+      Number(item.start.split(':')[1]) -
+      9 * 60) /
+      60) *
+    150
+  }px; --duration: ${Math.max(
+    ((Number(item.end.split(':')[0]) * 60 +
+      Number(item.end.split(':')[1]) -
+      (Number(item.start.split(':')[0]) * 60 +
+        Number(item.start.split(':')[1]))) /
+      60) *
+      150,
+    52
+  )}px;`}
+>
+        {!item.start.endsWith(':00') && (
+  <span class="exact-start">{item.start}</span>
+)}
+        <div class="timeline-card-content">
+          <div class="timeline-card-top">
+            <span class="card-time">
+              {item.start}–{item.end}
+            </span>
+
+            <span class="status-badge"></span>
+          </div>
+
+          <h2>{item.name}</h2>
+
+          <span class="detail-link">DETAIL →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="day-column" data-day-column="day2">
+  　<div
+  class="current-time-line"
+  data-current-line
+  data-date="2026-10-04"
+  aria-hidden="true"
+>
+  <span class="current-time-dot"></span>
+</div>
+    {schedules.day2.map((item) => (
+      <a
+  class="timeline-card"
+  href={`/programs?open=${encodeURIComponent(getProgramGroup(item))}`}
+  data-card-venue={item.venue}
+  data-start={item.start}
+  data-end={item.end}
+  data-date="2026-10-04"
+  style={`--start: ${
+    ((Number(item.start.split(':')[0]) * 60 +
+      Number(item.start.split(':')[1]) -
+      9 * 60) /
+      60) *
+    150
+  }px; --duration: ${Math.max(
+    ((Number(item.end.split(':')[0]) * 60 +
+      Number(item.end.split(':')[1]) -
+      (Number(item.start.split(':')[0]) * 60 +
+        Number(item.start.split(':')[1]))) /
+      60) *
+      150,
+    52
+  )}px;`}
+>
+        {!item.start.endsWith(':00') && (
+  <span class="exact-start">{item.start}</span>
+)}
+        <div class="timeline-card-content">
+          <div class="timeline-card-top">
+            <span class="card-time">
+              {item.start}–{item.end}
+            </span>
+
+            <span class="status-badge"></span>
+          </div>
+
+          <h2>{item.name}</h2>
+
+          <span class="detail-link">DETAIL →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+</div>
 
       <div class="notice">
         <span class="notice-mark">NOTICE</span>
@@ -416,10 +474,9 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
     document.querySelectorAll<HTMLElement>('.schedule-list');
 
   const cards =
-    document.querySelectorAll<HTMLElement>('.schedule-card');
-
+  document.querySelectorAll<HTMLElement>('.timeline-card');
   let currentDay = 'day1';
-  let currentVenue = 'all';
+  let currentVenue = '体育館';
 
   function updateSchedule() {
     scheduleLists.forEach((list) => {
@@ -443,6 +500,16 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
         card.style.display = shouldShow ? '' : 'none';
       });
     });
+
+    const timelineCards =
+    document.querySelectorAll<HTMLElement>('.timeline-card');
+
+  timelineCards.forEach((card) => {
+    const venue = card.dataset.cardVenue;
+    const shouldShow = venue === currentVenue;
+
+    card.classList.toggle('is-visible', shouldShow);
+  });
   }
 
   function updateLiveStatus() {
@@ -561,6 +628,79 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
 
   // 開いたままでも表示が更新される
   setInterval(updateLiveStatus, 30000);
+
+  function updateTodayHeader() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  const today = `${year}-${month}-${day}`;
+
+  const dayHeaders =
+    document.querySelectorAll<HTMLElement>('.day-header');
+
+  dayHeaders.forEach((header) => {
+    const isToday = header.dataset.date === today;
+
+    header.classList.toggle('is-today', isToday);
+
+    const time =
+      header.querySelector<HTMLElement>('[data-current-time]');
+
+    if (time && isToday) {
+      time.textContent =
+        `${String(now.getHours()).padStart(2, '0')}:${String(
+          now.getMinutes()
+        ).padStart(2, '0')}`;
+    }
+  });
+}
+
+updateTodayHeader();
+
+setInterval(updateTodayHeader, 30000);
+function updateCurrentTimeLine() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const today = `${year}-${month}-${day}`;
+
+  const nowMinutes =
+    now.getHours() * 60 + now.getMinutes();
+
+  const startMinutes = 9 * 60;
+  const endMinutes = 15 * 60 + 30;
+
+  const lines =
+    document.querySelectorAll<HTMLElement>('[data-current-line]');
+
+  lines.forEach((line) => {
+    line.classList.remove('is-active');
+
+    const isToday = line.dataset.date === today;
+    const isFestivalTime =
+      nowMinutes >= startMinutes &&
+      nowMinutes <= endMinutes;
+
+    if (!isToday || !isFestivalTime) return;
+
+    const minutesFromStart = nowMinutes - startMinutes;
+
+    const top =
+      (minutesFromStart / 60) * 150;
+
+    line.style.top = `${top}px`;
+    line.classList.add('is-active');
+  });
+}
+
+updateCurrentTimeLine();
+
+setInterval(updateCurrentTimeLine, 30000);
 </script>
 </Layout>
 
@@ -981,6 +1121,358 @@ schedules.day2.sort((a, b) => a.start.localeCompare(b.start));
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.08em;
+}
+
+/* =========================
+   NEW TIMETABLE
+========================= */
+
+.timeline-scroll {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.timeline-grid,
+.timeline-body {
+  display: grid;
+  grid-template-columns: 90px minmax(380px, 1fr) minmax(380px, 1fr);
+  min-width: 850px;
+}
+
+.timeline-grid {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 110px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 7, 17, 0.94);
+  backdrop-filter: blur(18px);
+}
+
+.timeline-corner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 10px 20px;
+  color: #657086;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.day-header-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.day-number {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.day-name {
+  color: #789bf0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.today-info {
+  display: none;
+}
+
+.timeline-body {
+  position: relative;
+  height: 975px;
+}
+
+.time-axis,
+.day-column {
+  position: relative;
+  height: 975px;
+}
+
+.day-column {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 149px,
+      rgba(255, 255, 255, 0.08) 149px,
+      rgba(255, 255, 255, 0.08) 150px
+    );
+}
+
+.hour-label {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding-right: 14px;
+  transform: translateY(-50%);
+  color: #7f899e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-card {
+  position: absolute;
+  top: var(--start);
+  left: 14px;
+  right: 14px;
+  height: var(--duration);
+  min-height: 52px;
+}
+
+.timeline-card {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    visibility 0.28s ease;
+}
+
+.timeline-card.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.timeline-card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px 14px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 156, 240, 0.22);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(45, 66, 112, 0.72),
+      rgba(18, 25, 45, 0.88)
+    );
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.timeline-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-time {
+  color: #9fb6ea;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-card h2 {
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.detail-link {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  color: #829fe3;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.exact-start {
+  position: absolute;
+  left: -50px;
+  top: 0;
+  z-index: 4;
+  color: #829fe3;
+  font-size: 0.58rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-header.is-today {
+  position: relative;
+  z-index: 2;
+}
+
+.day-header.is-today::before {
+  content: '';
+  position: absolute;
+  inset: 12px 28px;
+  z-index: -1;
+  border: 1px solid rgba(117, 156, 255, 0.42);
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(91, 135, 235, 0.18),
+      rgba(34, 52, 94, 0.08) 65%,
+      transparent 100%
+    );
+  box-shadow:
+    0 0 28px rgba(91, 135, 235, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.day-header.is-today .day-number {
+  transform: scale(1.08);
+  text-shadow: 0 0 24px rgba(132, 169, 255, 0.4);
+}
+
+.day-header.is-today .today-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.today-label {
+  color: #789bf0;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.current-time {
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.current-time-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 8;
+  display: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(120, 158, 255, 0.95),
+    rgba(120, 158, 255, 0.35)
+  );
+  box-shadow:
+    0 0 8px rgba(120, 158, 255, 0.7),
+    0 0 18px rgba(120, 158, 255, 0.35);
+  pointer-events: none;
+}
+
+.current-time-line.is-active {
+  display: block;
+}
+
+.current-time-dot {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9ab7ff;
+  box-shadow:
+    0 0 8px rgba(154, 183, 255, 0.95),
+    0 0 18px rgba(154, 183, 255, 0.6);
+  transform: translateY(-50%);
+}
+
+/* LIVE */
+.timeline-card.is-live {
+  z-index: 6;
+}
+
+.timeline-card.is-live .timeline-card-content {
+  border-color: rgba(139, 173, 255, 0.85);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(64, 96, 176, 0.92),
+      rgba(20, 31, 62, 0.95)
+    );
+  box-shadow:
+    0 0 18px rgba(117, 156, 255, 0.28),
+    0 0 40px rgba(117, 156, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.timeline-card.is-live .status-badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(139, 173, 255, 0.18);
+  color: #bdd0ff;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+/* NEXT */
+.timeline-card.is-next {
+  z-index: 5;
+}
+
+.timeline-card.is-next .timeline-card-content {
+  border-color: rgba(126, 156, 225, 0.46);
+  box-shadow:
+    0 0 14px rgba(117, 156, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.timeline-card.is-next .status-badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  border: 1px solid rgba(160, 181, 230, 0.25);
+  border-radius: 999px;
+  color: #aebee2;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .timeline-card.is-visible:hover {
+    transform: translateY(-3px);
+    z-index: 7;
+  }
+
+  .timeline-card.is-visible:hover .timeline-card-content {
+    border-color: rgba(132, 169, 255, 0.55);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.24),
+      0 0 22px rgba(117, 156, 255, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
 }
 
 </style>
