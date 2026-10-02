@@ -107,8 +107,8 @@ console.log('PROGRAMS DATA:', programs);
   </div>
 
   <div class="detail-info">
-    <p class="detail-info-label">WAIT TIME</p>
-    <p id="detail-waiting">--</p>
+    <p class="detail-info-label">CONGESTION</p>
+    <p id="detail-wait">--</p>
     </div>
    </div>
   </div>
@@ -176,6 +176,12 @@ console.log('PROGRAMS DATA:', programs);
   const detailButtons =
   Array.from(document.querySelectorAll<HTMLButtonElement>('.detail-button'));
 
+function closeDetail() {
+  detailOverlay?.classList.remove('is-open');
+  detailOverlay?.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
 const detailOverlay =
   document.querySelector<HTMLElement>('#detail-overlay');
 
@@ -201,15 +207,34 @@ const detailWait =
   document.querySelector<HTMLElement>('#detail-wait');
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbxSg6KCtM7BS81JoNiLTFIwT8XBD3mFwgRb8k8i8cTY0laXTmuCA7LDZbeiD8Nxk913/exec';
+  'https://script.google.com/macros/s/AKfycbwmf-afDDlSv1tEdqVU5tCqcSfw7qKuGmfm7Bx5PlbmqlnbG8i-S2ExxEzEwXF5Bk8G/exec';
+type CongestionData = {
+  className: string;
+  waiting: string;
+  time: string;
+  status: string;
+};
 
-function closeDetail() {
-  detailOverlay?.classList.remove('is-open');
-  detailOverlay?.setAttribute('aria-hidden', 'true');
+let congestionData: Record<string, CongestionData> | null = null;
 
-  document.body.style.overflow = '';
-}
 
+const congestionPromise = fetch(API_URL)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    return response.json();
+  })
+  .then((data: Record<string, CongestionData>) => {
+    congestionData = data;
+    console.log('混雑情報を一括取得:', congestionData);
+    return data;
+  })
+  .catch((error) => {
+  console.error('混雑情報の一括取得に失敗:', error);
+  return null;
+});
 
 detailButtons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -226,21 +251,28 @@ detailButtons.forEach((button) => {
     if (detailWait) {
   detailWait.textContent = '取得中...';
 }
+console.log('FETCH直前:', congestionId, detailWait);
 
 if (congestionId && detailWait) {
-  fetch(`${API_URL}?class=${encodeURIComponent(congestionId)}`)
-    .then((response) => response.json())
-    .then((data) => {
-      detailWait.innerHTML = `
-        <strong>${data.waiting}人待ち</strong><br>
-        <span>${data.status}</span><br>
-        <small>${data.time} 更新</small>
-      `;
-    })
-    .catch((error) => {
-      console.error(error);
+  congestionPromise.then((allData) => {
+    if (!allData) {
       detailWait.textContent = '取得できませんでした';
-    });
+      return;
+    }
+
+    const data = allData[congestionId];
+
+    if (!data) {
+      detailWait.textContent = '情報なし';
+      return;
+    }
+
+    detailWait.innerHTML = `
+      <strong>${data.waiting}組待ち</strong><br>
+      <span>${data.status}</span><br>
+      <small>${data.time} 更新</small>
+    `;
+  });
 } else if (detailWait) {
   detailWait.textContent = '--';
 }
