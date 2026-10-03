@@ -256,7 +256,7 @@ const gymPlays = {
     time: string;
     status: string;
   };
-  async function updateWaitTimes() {
+  async function updateWaitingTimes() {
     try {
       const response = await fetch(API_URL);
 
@@ -332,7 +332,7 @@ const gymPlays = {
     }
   }
 
-  updateWaitTimes();
+  updateWaitingTimes();
 
-  setInterval(updateWaitTimes, 30000);
+  setInterval(updateWaitingTimes, 30000);
 </script>
