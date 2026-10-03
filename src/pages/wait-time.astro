@@ -28,7 +28,7 @@ const classPrograms = programs.filter((program) =>
         <span>CLASS</span>
         <span>PROGRAM</span>
         <span>PLACE</span>
-        <span>WAITING TIME</span>
+        <span>WAIT TIME</span>
       </div>
 
       <div class="program-list">
@@ -256,7 +256,8 @@ const gymPlays = {
     time: string;
     status: string;
   };
-  async function updateWaitingTimes() {
+
+  async function updateWaitTimes() {
     try {
       const response = await fetch(API_URL);
 
@@ -325,14 +326,14 @@ const gymPlays = {
           return;
         }
 
-        value.textContent = `${info.waiting}組待ち`;
+        value.textContent = `${info.wait}組待ち`;
       });
     } catch (error) {
       console.error('待ち時間の取得に失敗:', error);
     }
   }
 
-  updateWaitingTimes();
+  updateWaitTimes();
 
-  setInterval(updateWaitingTimes, 30000);
+  setInterval(updateWaitTimes, 30000);
 </script>
